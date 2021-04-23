@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="App\Entity\Event" table="event">
+    <indexes>
+      <index name="idCatEvent_idx" columns="categorieE"/>
+    </indexes>
+    <id name="idEvent" type="integer" column="ID_Event">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="nomEvent" type="string" column="Nom_Event" length="100" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="descriptionEvent" type="string" column="Description_Event" length="250" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="isactive" type="string" column="IsActive" length="20" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="dateDebEvent" type="date" column="Date_deb_Event" nullable="false"/>
+    <field name="dateFinEvent" type="date" column="Date_fin_Event" nullable="false"/>
+    <field name="categoriee" type="integer" column="categorieE" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="imageevent" type="string" column="ImageEvent" length="250" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="nbrParticipant" type="integer" column="nbr_Participant" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

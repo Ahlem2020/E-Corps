@@ -1,85 +1,102 @@
-
 <form>
     <table>
-
         {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+        <br>  <br>   <br>  <br>
+        <div class="form-row mb-4">
 
-    <div class="row mb-4">
-        <br>  <br>
         <tr>
-        <td>
-            <div class="col">
-                <br>  <br>
-                <div class="form-control" >
-                    {{ form_errors(form.nomEvent)}}
-                    {{ form_label(form.nomEvent,"Nom ") }}
-                    {{ form_widget(form.nomEvent) }}
-                </div>
-            </div>
+            <td>
+
+
+        <div class="col">
+            <br>  <br>
+            {{ form_errors(form.nomEvent) }}
+            {{ form_label(form.nomEvent,"Nom : " )}}
+            {{ form_row(form.nomEvent,{'attr': {'class': 'form-control'}}) }}
+        </div>
+
+            </td><td>
+        <div class="col">
+
+            <br>  <br>
+            {{ form_errors(form.descriptionEvent) }}
+            {{ form_label(form.descriptionEvent,"Description : " )}}
+            {{ form_row(form.descriptionEvent,{'attr': {'class': 'form-control'}}) }}
         </td>
+        </div>
+        </tr>
+        <tr>
             <td>
-                <div class="col">
-                    <br>  <br>
-                    <div class="form-control" >
-                    {{ form_errors(form.descriptionEvent) }}
-                    {{ form_label(form.descriptionEvent,"Description") }}
-                    {{ form_widget(form.descriptionEvent)}}
-                </div>
-                </div>
+
+        <div class="col">
+            <br>  <br>
+
+            {{ form_errors(form.isactive) }}
+            {# {{ form_label(form.isactive) }}  #}
+
+            {{ form_row(form.isactive,{'attr': {'class': 'form-control'}}) }}
+
+        </div>
+            </td>
+            <td>
+        <div class="col">
+            <br>  <br>
+            {{ form_errors(form.dateDebEvent) }}
+            {{ form_label(form.dateDebEvent,"Date Début : " )}}
+            {{ form_row(form.dateDebEvent,{'attr': {'class': 'form-control'}}) }}
+
+        </div>
             </td>
         </tr>
         <tr>
             <td>
-                <div class="col">  <br>  <br>
-                    <div class="form-control" >
-                        {{ form_errors(form.isactive) }}
-                        {{ form_label(form.isactive,"Status") }}
-                        {{ form_widget(form.isactive) }}
-                    </div>
-                 </div>
+        <div class="col">
+
+            <br>  <br>
+            {{ form_errors(form.dateFinEvent) }}
+            {{ form_label(form.dateFinEvent,"Date Fin : " )}}
+            {{ form_row(form.dateFinEvent,{'attr': {'class': 'form-control'}}) }}
+
+        </div>
             </td>
             <td>
-                <div class="col">  <br>  <br>
-                    <div class="form-control" >
-                        {{ form_errors(form.dateDebEvent) }}
-                        {{ form_label(form.dateDebEvent,"Date Début") }}
-                        {{ form_widget(form.dateDebEvent)}}
-                    </div>
-                </div>
+        <div class="col">
+            {{ form_errors(form.categoriee) }}
+            {# {{ form_label(form.categoriee) }}  #}
+            {{ form_row(form.categoriee,{'attr': {'class': 'form-control'}}) }}
+
+        </div>
             </td>
         </tr>
         <tr>
             <td>
-                <div class="col">  <br>  <br>
-                    <div class="form-control" >
-                        <div>
-                        {{ form_errors(form.dateFinEvent) }}
-                        {{ form_label(form.dateFinEvent,"Date Fin") }}
-                        {{ form_widget(form.dateFinEvent) }}
-                        </div>
-                    </div>
-                </div>
-            </td>
-            <td>
-                <div class="col">  <br>  <br>
-                    <div class="form-control" >
-                        {{ form_errors(form.categoriee) }}
-                        {{ form_label(form.categoriee,"Num Catégorie") }}
-                        {{ form_widget(form.categoriee) }}
-                     </div>
-                </div>
+        <div class="col">
+<br>  <br>
+            {{ form_errors(form.imageevent) }}
+            {{ form_label(form.imageevent,"Image : " )}}
+            {{ form_row(form.imageevent,{'attr': {'class': 'form-control'}}) }}
+
+        </div>
+            </td><td>
+        <div class="col">
+
+            <br>  <br>
+            {{ form_errors(form.nbr_Participant) }}
+            {{ form_label(form.nbr_Participant," Participant : " )}}
+            {{ form_row(form.nbr_Participant,{'attr': {'class': 'form-control'}}) }}
+
+
+        </div>
             </td>
         </tr>
-    </div>
-        <tr>
-            <td><br></td>
-            <td><br></td>
-        </tr>
+        {{ form_end(form) }}
+
+        </div>
         <tr> <td><br></td>
             <td>
-                <input type="submit" name="time" class="btn btn-primary">
+                <input type="submit" name="time" class="mb-4 btn btn-primary">
             </td>
         </tr>
     </table>
-    {{ form_end(form) }}
+
 </form>

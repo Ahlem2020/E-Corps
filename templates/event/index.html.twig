@@ -1,12 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Event index{% endblock %}
+{% block title %} List Event {% endblock %}
 
 {% block body %}
 <div id="content" class="main-content">
     <div class="layout-px-spacing">
      <div class="row layout-top-spacing">
-
+<br>
+<br>
+<br>
             <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
                 <div class="widget widget-chart-one">
                     <div class="widget-heading">
@@ -32,6 +34,10 @@
                                 <td>{{ event.isactive }}</td>
                                 <td>{{ event.dateDebEvent ? event.dateDebEvent|date('Y-m-d') : '' }}</td>
                                 <td>{{ event.dateFinEvent ? event.dateFinEvent|date('Y-m-d') : '' }}</td>
+                                <td>{{ event.categoriee}}</td>
+                                <td>{{event.getImageevent()}}</td>
+                                <td>{{event.getNbrParticipant()}}</td>
+
                                 <td>
                                     <a href="{{ path('event_show', {'idEvent': event.idEvent}) }}">Afficher</a>
                                     <a href="{{ path('event_edit', {'idEvent': event.idEvent}) }}">Moddifier</a>

@@ -3,45 +3,41 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * Categorieevent
  *
  * @ORM\Table(name="categorieevent")
  * @ORM\Entity
- *
  */
 class Categorieevent
 {
     /**
      * @var int
      *
-     * @ORM\Column(name="ID_CategorieE", type="integer", nullable=false)
+     * @ORM\Column(name="categorieE", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
-     *
-
      */
-    private $idCategorieE;
+    private $categoriee;
 
     /**
      * @var string
      *
      * @ORM\Column(name="NameCat", type="string", length=20, nullable=false)
-     * @Assert\NotBlank, (message=" Cette valeur ne doit pas être vide!!")
      */
     private $namecat;
 
     /**
      * @var string
-     *@Assert\NotBlank, (msg="Champ Obligatoire ")
+     *
      * @ORM\Column(name="DesCatEvent", type="string", length=250, nullable=false)
      */
     private $descatevent;
 
-    public function getIdCategorieE(): ?int
+    public function getCategoriee(): ?int
     {
-        return $this->idCategorieE;
+        return $this->categoriee;
     }
 
     public function getNamecat(): ?string
@@ -67,5 +63,6 @@ class Categorieevent
 
         return $this;
     }
+
 
 }

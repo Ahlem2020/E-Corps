@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Event
@@ -24,51 +23,59 @@ class Event
 
     /**
      * @var string
-     * @Assert\NotBlank, (message=" Cette valeur ne doit pas être vide!!")
-
+     *
      * @ORM\Column(name="Nom_Event", type="string", length=100, nullable=false)
      */
     private $nomEvent;
 
     /**
      * @var string
-     * @Assert\NotBlank, (message=" Cette valeur ne doit pas être vide!!")
-
+     *
      * @ORM\Column(name="Description_Event", type="string", length=250, nullable=false)
      */
     private $descriptionEvent;
 
     /**
      * @var string
-     * @Assert\NotBlank, (message=" Cette valeur ne doit pas être vide!!")
-
+     *
      * @ORM\Column(name="IsActive", type="string", length=20, nullable=false)
      */
     private $isactive;
 
     /**
      * @var \DateTime
-     * @Assert\NotBlank, (message=" Cette valeur ne doit pas être vide!!")
-
+     *
      * @ORM\Column(name="Date_deb_Event", type="date", nullable=false)
      */
     private $dateDebEvent;
 
     /**
      * @var \DateTime
-     * @Assert\NotBlank, (message=" Cette valeur ne doit pas être vide!!")
-
+     *
      * @ORM\Column(name="Date_fin_Event", type="date", nullable=false)
      */
     private $dateFinEvent;
 
     /**
      * @var int|null
-     * @Assert\NotBlank, (message=" Cette valeur ne doit pas être vide!!")
-
+     *
      * @ORM\Column(name="categorieE", type="integer", nullable=true)
      */
     private $categoriee;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ImageEvent", type="string", length=250, nullable=false)
+     */
+    private $imageevent;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="nbr_Participant", type="integer", nullable=false)
+     */
+    private $nbrParticipant;
 
     public function getIdEvent(): ?int
     {
@@ -143,6 +150,30 @@ class Event
     public function setCategoriee(?int $categoriee): self
     {
         $this->categoriee = $categoriee;
+
+        return $this;
+    }
+
+    public function getImageevent(): ?string
+    {
+        return $this->imageevent;
+    }
+
+    public function setImageevent(string $imageevent): self
+    {
+        $this->imageevent = $imageevent;
+
+        return $this;
+    }
+
+    public function getNbrParticipant(): ?int
+    {
+        return $this->nbrParticipant;
+    }
+
+    public function setNbrParticipant(int $nbrParticipant): self
+    {
+        $this->nbrParticipant = $nbrParticipant;
 
         return $this;
     }

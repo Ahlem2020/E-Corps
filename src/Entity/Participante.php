@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Participante
  *
- * @ORM\Table(name="participante")
+ * @ORM\Table(name="participante", indexes={@ORM\Index(name="ParticicpantE", columns={"ID_Event"})})
  * @ORM\Entity
  */
 class Participante
@@ -29,9 +29,12 @@ class Participante
     private $comptelogin;
 
     /**
-     * @var int
+     * @var \Event
      *
-     * @ORM\Column(name="ID_Event", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="Event")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ID_Event", referencedColumnName="ID_Event")
+     * })
      */
     private $idEvent;
 
@@ -52,12 +55,12 @@ class Participante
         return $this;
     }
 
-    public function getIdEvent(): ?int
+    public function getIdEvent(): ?Event
     {
         return $this->idEvent;
     }
 
-    public function setIdEvent(int $idEvent): self
+    public function setIdEvent(?Event $idEvent): self
     {
         $this->idEvent = $idEvent;
 

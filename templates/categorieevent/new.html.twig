@@ -1,25 +1,11 @@
-
 {% extends 'base.html.twig' %}
 
+{% block title %}New Categorieevent{% endblock %}
+
 {% block body %}
-    <div id="content" class="main-content">
-    <h1> Ajouter Catégorie</h1>
-    {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+    <h1>Create new Categorieevent</h1>
 
-    <div class="layout-px-spacing">
-        <div class="row layout-top-spacing">
+    {{ include('categorieevent/_form.html.twig') }}
 
-            <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
-                <div class="widget widget-chart-one">
-                    <div class="widget-heading">
-
-                        {{ include('categorieevent/_form.html.twig') }}
-                    </div>
-                </div>
-                <a href="{{ path('categorieevent_index') }}" class="btn btn-primary ml-3 mt-3">List Catégorie</a>
-
-            </div>
-        </div>
-    </div>
-
+    <a href="{{ path('categorieevent_index') }}">back to list</a>
 {% endblock %}

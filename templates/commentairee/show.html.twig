@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commentairee{% endblock %}
+
+{% block body %}
+    <h1>Commentairee</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>IdC</th>
+                <td>{{ commentairee.idC }}</td>
+            </tr>
+            <tr>
+                <th>Comment</th>
+                <td>{{ commentairee.comment }}</td>
+            </tr>
+            <tr>
+                <th>Iduser</th>
+                <td>{{ commentairee.iduser }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('commentairee_index') }}">back to list</a>
+
+    <a href="{{ path('commentairee_edit', {'idC': commentairee.idC}) }}">edit</a>
+
+    {{ include('commentairee/_delete_form.html.twig') }}
+{% endblock %}
