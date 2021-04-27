@@ -2,9 +2,14 @@
 
 namespace App\Controller;
 
+use App\Entity\Categorieevent;
 use App\Entity\Event;
+use Swift_Message;
+use Swift_Mailer;
 use App\Form\EventType;
+use App\Repository\EventRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,12 +22,18 @@ class EventController extends AbstractController
     /**
      * @Route("/", name="event_index", methods={"GET"})
      */
-    public function index(): Response
+    public function index(EventRepository $repository): Response
     {
         $events = $this->getDoctrine()
             ->getRepository(Event::class)
             ->findAll();
+        if(isset($_GET['search'])) {
+            $requestString = $_GET['search'];
+            $events = $repository->findStudentByNsc($requestString);
 
+
+            return $this->json(['retour' => $this->renderView('event/content.html.twig', ['events' => $events])]);
+        }
         return $this->render('event/index.html.twig', [
             'events' => $events,
         ]);
@@ -31,34 +42,49 @@ class EventController extends AbstractController
     /**
      * @Route("/new", name="event_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request,Swift_Mailer $mailer): Response
     {
         $event = new Event();
+        $category = new Categorieevent();
         $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
+        $images = $form->get('imageevent')->getData();
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $images = $form->get('imageevent')->getData();
 
-            // On boucle sur les images
-            foreach($images as $image){
-                // On génère un nouveau nom de fichier
-                $fichier = md5(uniqid()).'.'.$image->guessExtension();
-
-                // On copie le fichier dans le dossier uploads
-                $image->move(
+            /*-------------------Début Image--------------------*/
+            $file=$event->getImageevent();
+            $Filename = uniqid().'.'.$images->guessExtension();
+            try {
+                $file->move(
                     $this->getParameter('images_directory'),
-                    $fichier
-                );
-
-                // On crée l'image dans la base de données
-                $img = new imageevent();
-                $img->setName($fichier);
-                $annonce->addImage($img);
+                    $Filename);
             }
+            catch(FileException $e){
+            }
+            /*-------------------Fin Image--------------------*/
             $entityManager = $this->getDoctrine()->getManager();
+            $event->setImageevent($Filename);
             $entityManager->persist($event);
             $entityManager->flush();
+
+    
+            $message = (new Swift_Message('Nouveau Evénement ajouter '))
+                // On attribue l'expéditeur
+                ->setFrom('no-reply@SecnodLife.com')
+                // On attribue le destinataire
+                ->setTo('ahlem.benfradj@esprit.tn')
+                ->setBody(
+                    $this->renderView(
+                        'Event/notificationmail.html.twig', compact('event')
+                    ),
+                    'text/html'
+                )
+            ;
+            //envoie le msg
+            $mailer->send($message);
+
+            $this->addFlash('message', 'Votre message a été transmis, nous vous répondrons dans les meilleurs délais.'); // Permet un message flash de renvoi
 
             return $this->redirectToRoute('event_index');
         }

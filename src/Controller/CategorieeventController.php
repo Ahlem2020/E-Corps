@@ -52,7 +52,7 @@ class CategorieeventController extends AbstractController
     }
 
     /**
-     * @Route("/{idCategoriee}", name="categorieevent_show", methods={"GET"})
+     * @Route("/{categoriee}", name="categorieevent_show", methods={"GET"})
      */
     public function show(Categorieevent $categorieevent): Response
     {
@@ -62,7 +62,7 @@ class CategorieeventController extends AbstractController
     }
 
     /**
-     * @Route("/{idCategoriee}/edit", name="categorieevent_edit", methods={"GET","POST"})
+     * @Route("/{categoriee}/edit", name="categorieevent_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Categorieevent $categorieevent): Response
     {
@@ -82,11 +82,11 @@ class CategorieeventController extends AbstractController
     }
 
     /**
-     * @Route("/{idCategoriee}", name="categorieevent_delete", methods={"POST"})
+     * @Route("/{categoriee}", name="categorieevent_delete", methods={"POST"})
      */
     public function delete(Request $request, Categorieevent $categorieevent): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$categorieevent->getIdCategoriee(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$categorieevent->getCategoriee(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($categorieevent);
             $entityManager->flush();

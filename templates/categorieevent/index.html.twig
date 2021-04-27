@@ -4,9 +4,14 @@
 
 {% block body %}
 <div id="content" class="main-content">
-    <h1> List des Catégorie</h1>
     <div class="layout-px-spacing">
+        <input type="text" id="search" class="form-control"   placeholder="Search">
+
         <div class="row layout-top-spacing">
+            <br>
+
+            <br>
+            <br>
 
             <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
                 <div class="widget widget-chart-one">
@@ -15,40 +20,52 @@
                         <table class="table">
                             <thead>
                             <tr>
-                                <th>Num °</th>
-                                <th>Nom  </th>
-                                <th>Description </th>
+                                <th>Categoriee</th>
+                                <th>Namecat</th>
+                                <th>Descatevent</th>
                                 <th>actions</th>
-                            </tr>
-                            </thead>
+                             </tr>
+                          </thead>
                             <tbody>
-                            {% for categorieevent in categorieevents %}
-                                <tr>
-                                    <td>{{ categorieevent.categoriee }}</td>
-                                    <td>{{ categorieevent.namecat }}</td>
-                                    <td>{{ categorieevent.descatevent }}</td>
-                                    <td>
-                                        <a href="{{ path('categorieevent_show', {'idCategoriee': categorieevent.categoriee}) }}">Afficher</a>
-                                        <a href="{{ path('categorieevent_edit', {'idCategoriee': categorieevent.categoriee}) }}">Modifier</a>
-                                    </td>
-                                </tr>
-                            {% else %}
-                                <tr>
-                                    <td colspan="4">no records found</td>
-                                </tr>
-                            {% endfor %}
+                            <tbody id="content">
+                            {% include 'categorieevent/content.html.twig' with {categorieevents: categorieevents} only %}
                             </tbody>
                         </table>
                     </div>
-
-                    <a href="{{ path('categorieevent_new') }}" class="btn btn-primary ml-3 mt-3">Ajouter Event</a>
-
                 </div>
-
+                <a href="{{ path('categorieevent_new') }}" class="btn btn-primary ml-3 mt-3">Ajouter Categorie</a>
 
             </div>
-
         </div>
     </div>
+</div>
+    <script>
+        <script src="{{ asset('https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js') }}">
+    </script>
 
-    {% endblock %}
+    <script>
+        $( document ).ready(function() {
+
+            $('#search').keyup(function(e){
+                var value = $(this).val();
+                $.ajax({
+                    url : "http://127.0.0.1:8000/Categorieevent/?search="+value,
+                    type : 'GET',
+                    data: {
+                        'searchValue' : value
+                    },
+                    success : function(retour){
+                        if(retour){
+                            $('#t tbody').empty();
+                            console.log(retour.retour)
+                            $('#content').html(retour.retour);
+
+                        }
+
+                    },
+                });
+                return false;
+            });
+        });
+    </script>
+{% endblock %}

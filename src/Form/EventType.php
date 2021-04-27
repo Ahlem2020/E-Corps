@@ -35,7 +35,9 @@ class EventType extends AbstractType
 
             ->add('categoriee',EntityType::class,[
                 'class' => Categorieevent::class,
-                'choice_label' => 'namecat',
+                'choice_label' =>function(Categorieevent $category){
+                return $category->getCategoriee(). '  '.$category->getNamecat();
+                },
                 'mapped' => false,
                 'required' => false
             ])

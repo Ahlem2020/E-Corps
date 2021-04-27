@@ -2,104 +2,92 @@
 
 namespace App\Entity;
 
-use App\Repository\ParticipantRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=ReactionRepository::class)
+ * Reaction
+ *
+ * @ORM\Table(name="reaction", indexes={@ORM\Index(name="ReactEvent", columns={"ID_Event"}), @ORM\Index(name="ReactUser", columns={"compteLogin"})})
+ * @ORM\Entity
  */
 class Reaction
 {
     /**
+     * @var int
+     *
+     * @ORM\Column(name="idReaction", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $idReaction;
+    private $idreaction;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Event", inversedBy="reactions")
-     */
-    private $ID_Event;
-
-    /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="typeReaction", type="integer", nullable=false)
+     * @ORM\Column(name="typeReaction", type="string", length=200, nullable=false)
      */
-    private $compteLogin;
+    private $typereaction;
 
     /**
-     * @var integer
+     * @var \Event
      *
-     * @ORM\Column(name="typeReaction", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="Event")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ID_Event", referencedColumnName="ID_Event")
+     * })
      */
-    private $typeReaction;
+    private $idEvent;
 
     /**
-     * @return mixed
+     * @var \Compte
+     *
+     * @ORM\ManyToOne(targetEntity="Compte")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="compteLogin", referencedColumnName="compteLogin")
+     * })
      */
-    public function getIdReaction()
+    private $comptelogin;
+
+    public function getIdreaction(): ?int
     {
-        return $this->idReaction;
+        return $this->idreaction;
     }
 
-    /**
-     * @param mixed $idReaction
-     */
-    public function setIdReaction($idReaction): void
+    public function getTypereaction(): ?string
     {
-        $this->idReaction = $idReaction;
+        return $this->typereaction;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getIDEvent()
+    public function setTypereaction(string $typereaction): self
     {
-        return $this->ID_Event;
+        $this->typereaction = $typereaction;
+
+        return $this;
     }
 
-    /**
-     * @param mixed $ID_Event
-     */
-    public function setIDEvent($ID_Event): void
+    public function getIdEvent(): ?Event
     {
-        $this->ID_Event = $ID_Event;
+        return $this->idEvent;
     }
 
-    /**
-     * @return int
-     */
-    public function getCompteLogin(): int
+    public function setIdEvent(?Event $idEvent): self
     {
-        return $this->compteLogin;
+        $this->idEvent = $idEvent;
+
+        return $this;
     }
 
-    /**
-     * @param int $compteLogin
-     */
-    public function setCompteLogin(int $compteLogin): void
+    public function getComptelogin(): ?Compte
     {
-        $this->compteLogin = $compteLogin;
+        return $this->comptelogin;
     }
 
-    /**
-     * @return int
-     */
-    public function getTypeReaction(): int
+    public function setComptelogin(?Compte $comptelogin): self
     {
-        return $this->typeReaction;
-    }
+        $this->comptelogin = $comptelogin;
 
-    /**
-     * @param int $typeReaction
-     */
-    public function setTypeReaction(int $typeReaction): void
-    {
-        $this->typeReaction = $typeReaction;
+        return $this;
     }
-
 
 
 }

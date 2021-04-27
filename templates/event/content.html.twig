@@ -1,0 +1,22 @@
+{% for event in events %}
+
+                    <tr>
+                    <td>{{ event.idEvent }}</td>
+                    <td>{{ event.nomEvent }}</td>
+                    <td>{{ event.descriptionEvent }}</td>
+                    <td>{{ event.isactive }}</td>
+                    <td>{{ event.dateDebEvent ? event.dateDebEvent|date('Y-m-d') : '' }}</td>
+                    <td>{{ event.dateFinEvent ? event.dateFinEvent|date('Y-m-d') : '' }}</td>
+                    <td>{{ event.categoriee}}</td>
+                    <td>{{event.getImageevent()}}</td>
+                    <td>{{event.getNbrParticipant()}}</td>
+                    <td>
+                        <a href="{{ path('event_show', {'idEvent': event.idEvent}) }}">Afficher</a>
+                        <a href="{{ path('event_edit', {'idEvent': event.idEvent}) }}">Moddifier</a>
+                    </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="7">no records found</td>
+                    </tr>
+{% endfor %}

@@ -1,0 +1,16 @@
+{% for categorieevent in categorieevents %}
+    <tr>
+        <td>{{ categorieevent.categoriee }}</td>
+        <td>{{ categorieevent.namecat }}</td>
+        <td>{{ categorieevent.descatevent }}</td>
+        <td>
+            <a href="{{ path('categorieevent_show', {'categoriee': categorieevent.categoriee}) }}">show</a>
+            <a href="{{ path('categorieevent_edit', {'categoriee': categorieevent.categoriee}) }}">edit</a>
+        </td>
+    </tr>
+{% else %}
+    <tr>
+        <td colspan="4">no records found</td>
+    </tr>
+{% endfor %}
+</tbody>

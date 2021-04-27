@@ -1,0 +1,92 @@
+{% extends "Client.html.twig" %}
+{% block content %}
+    <section>
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="event-item event-single">
+
+                        <figure><img src="{{ asset('img/' ~ Event.imageevent) }}" alt="//">
+                            <figcaption>{{ Event.dateDebEvent ? Event.dateDebEvent|date('m-d') : '' }}</figcaption>
+                        </figure>
+                        <div class="resume">
+                            <ul>
+                                <li><strong>Date Début :{{ Event.dateDebEvent ? Event.dateDebEvent|date('Y-m-d') : '' }}</strong> </li>
+                                <li><strong>Date Fin :{{ Event.dateFinEvent ? Event.dateFinEvent|date('Y-m-d') : '' }}</strong> </li>
+
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="event-item event-single">
+                        <h2>{{ Event.nomEvent}}</h2>
+                        <br>
+                        {% if Event.isactive==0 %}
+                            <div class="ammount">Disponible </div>
+
+                        {% elseif Event.isactive==1 %}
+                            <div class="ammount">Non Disponible</div>
+                        {% endif %}
+                        <br>
+                        <p>{{ Event.descriptionEvent }}</p>
+
+                        <blockquote> <i class=""></i>
+                            <a href="#" class="btn btn-store"><i class="fa fa-shopping-cart"></i>Participer</a>
+                            </p>
+                        </blockquote>
+                        <br>
+
+                        <p></p>
+
+
+                    </div>
+                </div>
+            </div>
+            <blockquote> <i class="fa fa-comments" aria-hidden="true"></i>
+                <p>Commentaires</p>
+            </blockquote>
+
+
+            <div class="comments">
+                <h4>There are 3 comments</h4>
+
+                <div class="comments-item">
+                    <figure><img src="img/people/commnet03.jpg" alt="//"></figure><a href="#" class="reply-link pull-right"><i class="fa fa-mail-forward"></i>Reply</a><span>Posted by <strong>Mike Doe</strong></span><span>on <em>September 23, 2014 11:59 am</em></span>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo delectus aliquam alias voluptatibus.</p>
+                </div>
+                <h4>Ajouter un Commentaire</h4>
+                <form action="http://kickbox.coralixthemes.com/green/contact-form.php" data-ajax="1" method="POST">
+                    <input type="hidden" name="type" value="comments">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="messege" class="sr-only">Messege</label>
+                                <textarea id="messege" name="messege" placeholder="Messege" class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-form"><i class="fa fa-paper-plane-o"></i>Commenter</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-response"></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <h4>Partager:</h4>
+            <ul class="social social-circled">
+                <li><a href="#" class="twitter"><i class="fa fa-instagram"></i></a></li>
+                <li><a href="#" class="facebook"><i class="fa fa-facebook"></i></a></li>
+
+            </ul>
+
+        </div>
+    </article>
+{% endblock  %}

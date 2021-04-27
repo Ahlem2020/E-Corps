@@ -1,0 +1,24 @@
+{% for E in Event %}
+    <div class="event-item">
+        <figure><img src="{{ asset('img/' ~ E.imageevent)}}" alt="//" class="rounded mx-auto d-block">
+            <figcaption>{{ E.getDateDebEvent() |date('d-m') }}</figcaption>
+        </figure>
+        <h2>{{ E.getNomEvent}}</h2>
+        <br>
+
+        {% if E.getIsactive()==0 %}
+            <div class="ammount">Disponible </div>
+
+        {% elseif E.getIsactive()==1 %}
+            <div class="ammount">Non Disponible</div>
+        {% endif %}
+        <br>
+        <p>{{ E.getDescriptionEvent() }}</p>
+        <p class="location">{{ E.getDateDebEvent()|date('d-m-Y') }}</p>
+
+        <a href="{{ path('events_Details', {'idEvent': E.idEvent}) }}"class="btn btn-event"><i class="fa fa-book fa-fw"></i> Détails  </a></br></br>
+    </div>
+{% else %}
+
+        no records found
+{% endfor %}

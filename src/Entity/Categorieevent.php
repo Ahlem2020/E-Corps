@@ -24,7 +24,7 @@ class Categorieevent
     /**
      * @var string
      *
-     * @ORM\Column(name="NameCat", type="string", length=20, nullable=false)
+     * @ORM\Column(name="NameCat", type="string", length=200, nullable=false)
      */
     private $namecat;
 
@@ -63,6 +63,9 @@ class Categorieevent
 
         return $this;
     }
-
+    public function __toString()
+    {
+        return (string) $this->getCategoriee();
+    }
 
 }

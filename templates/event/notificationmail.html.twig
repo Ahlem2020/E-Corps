@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nouvelle Article</title>
+</head>
+<body>
+<h1>Nouveau Evénement</h1>
+<p>Une nouvelle événement a été créé</p>
+<p>Nom de l'événement : {{ event.nomEvent}}}}</p>
+<p>Description : {{ event.descriptionEvent }}</p>
+<p>de  : {{ event.dateDebEvent |date('d-m-y') }} Jusqu'a {{ event.dateFinEvent|date('d-m-y')  }}  </p>
+
+</body>
+</html>

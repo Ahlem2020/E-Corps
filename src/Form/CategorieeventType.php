@@ -12,8 +12,8 @@ class CategorieeventType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('namecat')
-            ->add('descatevent')
+            ->add('namecat', null, array('label' => false))
+            ->add('descatevent', null, array('label' => false))
         ;
     }
 

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Commentairee
  *
- * @ORM\Table(name="commentairee", indexes={@ORM\Index(name="CommentEvent", columns={"ID_Event"})})
+ * @ORM\Table(name="commentairee", indexes={@ORM\Index(name="CommentEvent", columns={"ID_Event"}), @ORM\Index(name="CommentUser", columns={"compteLogin"})})
  * @ORM\Entity
  */
 class Commentairee
@@ -24,68 +24,67 @@ class Commentairee
     /**
      * @var string
      *
-     * @ORM\Column(name="Comment", type="string", length=250, nullable=false)
+     * @ORM\Column(name="Message", type="text", length=0, nullable=false)
      */
-    private $comment;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="iduser", type="integer", nullable=false)
-     */
-    private $iduser;
+    private $message;
 
     /**
      * @var \Event
      *
-     * @ORM\ManyToOne(targetEntity=Event::class)
+     * @ORM\ManyToOne(targetEntity="Event")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="ID_Event", referencedColumnName="ID_Event")
      * })
      */
     private $idEvent;
 
+    /**
+     * @var \Compte
+     *
+     * @ORM\ManyToOne(targetEntity="Compte")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="compteLogin", referencedColumnName="compteLogin")
+     * })
+     */
+    private $comptelogin;
+
     public function getIdC(): ?int
     {
         return $this->idC;
     }
 
-    public function getComment(): ?string
+    public function getMessage(): ?string
     {
-        return $this->comment;
+        return $this->message;
     }
 
-    public function setComment(string $comment): self
+    public function setMessage(string $message): self
     {
-        $this->comment = $comment;
+        $this->message = $message;
 
         return $this;
     }
 
-    public function getIduser(): ?int
-    {
-        return $this->iduser;
-    }
-
-    public function setIduser(int $iduser): self
-    {
-        $this->iduser = $iduser;
-
-        return $this;
-    }
-
-    /**
-     * @return \Event
-     */
     public function getIdEvent(): ?Event
     {
         return $this->idEvent;
     }
 
-
     public function setIdEvent(?Event $idEvent): self
     {
         $this->idEvent = $idEvent;
+
+        return $this;
+    }
+
+    public function getComptelogin(): ?Compte
+    {
+        return $this->comptelogin;
+    }
+
+    public function setComptelogin(?Compte $comptelogin): self
+    {
+        $this->comptelogin = $comptelogin;
 
         return $this;
     }

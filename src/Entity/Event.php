@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Event
  *
- * @ORM\Table(name="event", indexes={@ORM\Index(name="idCatEvent_idx", columns={"categorieE"})})
+ * @ORM\Table(name="event", indexes={@ORM\Index(name="Categorie", columns={"categorieE"})})
  * @ORM\Entity
  */
 class Event
@@ -57,13 +57,6 @@ class Event
     private $dateFinEvent;
 
     /**
-     * @var int|null
-     *
-     * @ORM\Column(name="categorieE", type="integer", nullable=true)
-     */
-    private $categoriee;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="ImageEvent", type="string", length=250, nullable=false)
@@ -76,6 +69,16 @@ class Event
      * @ORM\Column(name="nbr_Participant", type="integer", nullable=false)
      */
     private $nbrParticipant;
+
+    /**
+     * @var \Categorieevent
+     *
+     * @ORM\ManyToOne(targetEntity=Categorieevent::class)
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="categorieE", referencedColumnName="categorieE")
+     * })
+     */
+    private $categoriee;
 
     public function getIdEvent(): ?int
     {
@@ -142,24 +145,11 @@ class Event
         return $this;
     }
 
-    public function getCategoriee(): ?int
-    {
-        return $this->categoriee;
-    }
-
-    public function setCategoriee(?int $categoriee): self
-    {
-        $this->categoriee = $categoriee;
-
-        return $this;
-    }
-
-    public function getImageevent(): ?string
-    {
+    public function getImageevent()    {
         return $this->imageevent;
     }
 
-    public function setImageevent(string $imageevent): self
+    public function setImageevent($imageevent)
     {
         $this->imageevent = $imageevent;
 
@@ -177,6 +167,20 @@ class Event
 
         return $this;
     }
+
+    public function getCategoriee(): ?Categorieevent
+    {
+        return $this->categoriee;
+    }
+
+    public function setCategoriee(?Categorieevent $categoriee): self
+    {
+        $this->categoriee = $categoriee;
+
+        return $this;
+    }
+
+
 
 
 }

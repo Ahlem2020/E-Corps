@@ -1,47 +1,67 @@
 {% extends 'Client.html.twig' %}
 {% block content %}
-<section>
-    <article>
-        <div class="container">
-           <h1 style="text-align: center;color:#1A1C2D; " >List des Evénements</h1>
+    <!--begin Content-->
+        <article>
+            <h1 style="color: #858585; text-align: center"> List des Evénement  </h1>
             <br>
-            <div class="row">
-                <div class="col-md-md5">
-                    {% for E in Event %}
-                    <div class="event-item" style=" margin: 150px">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9" id="content">
+                        {% include 'home/content.html.twig' with {Event:Event} only %}
 
-                            <figure>
-                                <table>
-                                    <tr>
-                                        <td>
-                                <img src="{{ asset('img/events/1.png') }}" alt="//" style="width: 250px">
-                                <figcaption>{{ E.getDateDebEvent() |date('d-m') }}</figcaption>
-                                        </td><td>
-                                <h2>{{ E.getNomEvent}} </h2>
-
-                                {% if E.getIsactive()==0 %}
-                                    <h3> Active </h3>
-
-                                {% elseif E.getIsactive()==1 %}
-                                    <h3> Desactiver </h3>
-                                {% endif %}
-                                            <p>{{ E.getDescriptionEvent() }}</p>
-                                        </td>
-                                    </tr>
-
-                                </table>
-                         </figure>
+                        <div class="navigation">
+                            {{ knp_pagination_render(Event) }}
                         </div>
-                        <a href="{{ path('ajouterParticipant')}}" class="btn btn-event"> Participer</a>
-                        <a href="{{ path('commentairee_new')}}" class="btn btn-event"> Commenter</a>
-                        <a href="{{ path('ajouterParticipant')}}" class="btn btn-event"> Reaction</a>
+                </div>
+                <div class="col-md-3">
+                    <div class="sidebar">
+                        <form action="#">
+                            <div class="form-group">
+                                <label for="search" class="sr-only">Search</label><i class="fa fa-search">
+                                    <input id="search" type="text" placeholder="Search" class="form-control"></i>
+                            </div>
+                        </form>
+                        <h4>Categories</h4>
+                        <ul class="categories">
+                            {% for C in Categorieevent %}
+                            <li><a href="#"><i class="fa fa-angle-right"></i>{{ C.namecat }}</a></li>
+                            {% endfor %}
+                        </ul>
 
 
-
-                {% endfor %}
+                    </div>
+                </div>
             </div>
-        </div>
-        </div>
-    </article>
-</section>
+            </div>
+        </article>
+    <script>
+        <script src="{{ asset('https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js') }}">
+    </script>
+
+    <script>
+        $( document ).ready(function() {
+
+            $('#search').keyup(function(e){
+                var value = $(this).val();
+                $.ajax({
+                    url : "http://127.0.0.1:8000/home/?search="+value,
+                    type : 'GET',
+                    data: {
+                        'searchValue' : value
+                    },
+                    success : function(retour){
+                        if(retour){
+                            $('#t div').empty();
+                            console.log(retour.retour)
+                            $('#content').html(retour.retour);
+
+                        }
+
+                    },
+                });
+                return false;
+            });
+        });
+    </script>
+
 {% endblock  %}

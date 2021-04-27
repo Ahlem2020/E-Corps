@@ -1,45 +1,40 @@
-
 <form>
     <table>
         {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
-
-        <div class="row mb-4">
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <tr>
-                <td>
-                    <div class="col">
-                        <div class="form-control" >
-                            {{ form_errors(form.namecat)}}
-                            {{ form_label(form.namecat,"Nom Catégorie :  ") }}
-                            {{ form_widget(form.namecat) }}
-                        </div>
-                    </div>
-                </td>
-                <td>
-                    <div class="col">
-                        <div class="form-control" >
-                            {{ form_errors(form.descatevent) }}
-                            {{ form_label(form.descatevent,"Description : ") }}
-                            {{ form_widget(form.descatevent) }}
-                        </div>
-                    </div>
-                </td>
-            </tr>
+        <br>  <br>   <br>  <br>
+        <div class="form-row mb-4">
 
             <tr>
-                <td><br></td>
-                <td><br></td>
-            </tr>
-            <tr> <td><br></td>
                 <td>
-                    <input type="submit" name="time" class="btn btn-primary">
+
+
+                    <div class="col">
+                        <br>  <br>
+                        {{ form_errors(form.namecat) }}
+                        {{ form_label(form.namecat,"Nom : " )}}
+                        {{ form_row(form.namecat,{'attr': {'class': 'form-control'}}) }}
+                    </div>
+
+                </td><td>
+                    <div class="col">
+
+                        <br>  <br>
+                        {{ form_errors(form.descatevent) }}
+                        {{ form_label(form.descatevent,"Description : " )}}
+                        {{ form_row(form.descatevent,{'attr': {'class': 'form-control'}}) }}
                 </td>
-            </tr>
         </div>
+        </tr>
+
+
+        {{ form_end(form) }}
+
+        </div>
+
     </table>
-    {{ form_end(form) }}
+    <br>
+    <br>
+    <br>
+    <input type="submit" name="time" class="mb-4 btn btn-primary">
+
 </form>
