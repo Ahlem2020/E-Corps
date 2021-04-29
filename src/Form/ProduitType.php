@@ -22,6 +22,7 @@ class ProduitType extends AbstractType
                     'uiColor' => "#e2e2e2",
                     'toolbar' => 'full',
                     'required' => true
+
                 ]
             ])
             ->add('Prix', NumberType::class,[

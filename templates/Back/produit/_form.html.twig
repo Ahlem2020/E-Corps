@@ -19,6 +19,7 @@
 
 </style>
 
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 
 <div id="flActionButtons" class="col-lg-12">
@@ -26,12 +27,11 @@
         <div class="widget-header">
             <div class="row">
                 <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-
                 </div>
             </div>
         </div>
         <div class="widget-content widget-content-area">
-{{ form_start(form,{'attr': {'novalidate': 'novalidate'}})  }}
+{{ form_start(form,{'attr': {'id': 'my_captcha_form','novalidate': 'novalidate'}})}}
             <div class="form-group mb-4">
                 {{ form_row(form.NomProduit,{'attr': {'class': 'form-control'}}) }}
                 {{ form_row(form.Description,{'attr': {'class': 'form-control'}}) }}
@@ -45,6 +45,10 @@
                 </div>
                 {{ form_row(form.Categories,{'attr': {'class': 'form-control'}}) }}
 
+                <div class="g-recaptcha"
+                     data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+                ></div>
+
 <br/>
     <button class="btn btn-secondary mb-2" >{{ button_label|default('Ajouter') }}</button>
                 {{ form_end(form, {'render_rest': false}) }} {# do not render anything else #}
@@ -54,3 +58,18 @@
 
 </div>
 
+<script>
+    document.getElementById("my_captcha_form").addEventListener("submit",function(evt)
+    {
+        var response = grecaptcha.getResponse();
+        if(response.length == 0)
+        {
+            //reCaptcha not verified
+            alert("please verify you are humann!");
+            evt.preventDefault();
+            return false;
+        }
+        //captcha verified
+        //do the rest of your validations here
+    });
+</script>
