@@ -157,7 +157,8 @@ class Event
         return $this;
     }
 
-    public function getImageevent()    {
+    public function getImageevent()
+    {
         return $this->imageevent;
     }
 
@@ -222,7 +223,13 @@ class Event
         return $this;
     }
 
+    public function countParticipant(): self
+    {
 
+        $this->nbrParticipant = $this->nbrParticipant - 1;
+
+        return $this;
+    }
 
 
 }
