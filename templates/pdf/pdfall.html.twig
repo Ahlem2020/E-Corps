@@ -1,0 +1,72 @@
+<html>
+{% block stylesheets %}
+    <style>
+        h2{
+
+            background-color: lightgrey;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #3b3f5c;
+            color: #e3e4eb;
+        }
+        table{
+            width: max-content;
+        }
+
+    </style>
+{% endblock %}
+
+
+
+{% block body %}
+
+
+    <center>
+        <h2> List Produits </h2>
+        <table  >
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom Produit</th>
+                <th>Description</th>
+                <th>Prix</th>
+                <th>Quantité</th>
+                <th>Reports</th>
+
+            </tr>
+            </thead>
+
+            <tbody>
+{%  for produit in produit %}
+            <tr>
+                <td>{{ produit.id }}</td>
+                <td>{{ produit.NomProduit }}</td>
+                <td>{{ produit.Description|raw }}</td>
+                <td>{{ produit.Prix }} DT</td>
+                <td>{{ produit.Quantite }} pièce(s)</td>
+                {% if produit.Reports != 0 %}
+                <td>{{ produit.Reports }} report(s)</td>
+                {% else %}
+                    <td> Pas de reports</td>
+                {% endif %}
+{% endfor %}
+
+
+
+            </tr>
+
+
+            </tbody>
+        </table>
+    </center>
+
+
+
+
+{% endblock %}
+</html>

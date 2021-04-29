@@ -1,0 +1,14 @@
+{% extends 'BaseBack.html.twig' %}
+
+{% block title %}Traitement Produit{% endblock %}
+
+{% block body %}
+    <h1>Traiter le  Produit</h1>
+    <div class="statbox widget box box-shadow">
+
+        {{ include('/Back/produit/formReport.html.twig', {'button_label': 'Traiter'}) }}
+
+        <a href="{{ path('produit_index') }}" class="btn btn-outline-primary mb-2">Retour au produits</a>
+
+    </div>
+{% endblock %}

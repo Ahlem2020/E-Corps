@@ -1,0 +1,29 @@
+{% extends 'BaseBack.html.twig' %}
+{% block title %}Produit{% endblock %}
+
+{% block body %}
+
+
+
+
+<br/>
+    <div style="margin-left: 450px" >
+        <img style="height: 200px; width: 200px;" src="/imagez/{{ produit.Image }}" class="card-img-top" alt="widget-card-2" >
+        <div class="card-body">
+            <h5 class="card-title" class="text-center">{{ produit.NomProduit }}</h5>
+            <p class="card-text">Desciption : {{ produit.Description|raw }} </p>
+            <p class="card-text">Prix : {{ produit.Prix }} DT</p>
+            <p class="card-text">Quantite : {{ produit.Quantite }} pièces</p>
+            <p class="card-text">Catégorie : {{ produit.Categories }}</p>
+            <br/>
+            <a href="{{ path('pdf',{'id':produit.id}) }}" class="btn btn-secondary mb-2">Obtenir PDF</a>
+
+        </div>
+    </div>
+
+    <br/>
+    <a href="{{ path('produit_index') }}" type="submit"  class="btn btn-outline-primary mb-2">Retour au produits</a>
+
+    <a href="{{ path('produit_edit', {'id': produit.id}) }}" type="submit"  class="btn btn-outline-primary mb-2">Modifier</a>
+
+{% endblock %}

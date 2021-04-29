@@ -1,0 +1,200 @@
+a:hover{
+  color: #21b44e;
+}
+article>ul>i {
+  color: #21b44e;
+}
+footer h4:after{
+  background-color: #21b44e;
+}
+h3.title-icon{
+  color: #21b44e;
+}
+.btn{
+  background-color: #21b44e;
+}
+.btn.btn-filters.active,
+.btn.btn-filters:hover {
+  background-color: #21b44e;
+  border-color: #21b44e;
+}
+.btn.btn-offer:hover{
+  color: #21b44e;
+}
+.btn.btn-store:hover {
+  background-color: #21b44e;
+}
+.btn.btn-testimonials{
+  color: #21b44e;  
+}
+.btn.btn-testimonials:hover{
+  background-color: #21b44e;
+  border-color: #21b44e;
+}
+.btn.btn-video:hover {
+  background-color: #21b44e;
+}
+.panel-group .panel-title>a:hover {
+  color: #21b44e;
+}
+.panel-group .panel-title>a:hover i {
+  color: #21b44e;
+}
+.panel-group .panel-title>a i{
+  color: #21b44e;
+}
+.navbar .navbar-nav .dropdown-menu>li.active>a,
+.navbar .navbar-nav .dropdown-menu>li>a:hover{
+  background-color: #21b44e;
+}
+.navbar .navbar-nav>li>a:hover,
+.navbar .navbar-nav>li>a:focus,
+.navbar .navbar-nav>li.active>a{
+  color: #21b44e;
+}
+.menu-effect li a:before{
+  background-color: #21b44e;
+}
+.navbar-toggle{
+  border-color: #21b44e;
+}
+.navbar-toggle span {
+  background-color: #21b44e;
+}
+.pagination>li>a:hover,
+.pagination>li.active>a{
+  border-color: #21b44e;
+  color: #21b44e;
+}
+.bannercontainer .caption{
+  background-color: #21b44e;
+}
+.bannercontainer .caption:after{
+  background-color: #21b44e;
+}
+.sidebar .panel-group .panel-title>a:hover {
+  color: #21b44e;
+}
+.sidebar .panel-group .panel-title>a:hover i {
+  color: #21b44e;
+}
+.sidebar .panel-group .panel-title>a i{
+  color: #21b44e;
+}
+.sidebar .popular li a:hover figure {
+  border-color: #21b44e;
+}
+.nav-tabs>li.active>a,
+.nav-tabs>li>a:focus,
+.nav-tabs>li>a:hover{
+  color: #21b44e;
+}
+.timetable.mini li span:first-child{
+  color: #21b44e;
+}
+header .title:before{
+  background-color: #21b44e;
+}
+.content-left{
+  background: #21b44e;
+}
+.topbar .language a:hover {
+  color: #21b44e;
+}
+.topbar .top-menu li a:hover {
+  color: #21b44e;
+}
+.offer{
+  background-color: #21b44e;
+}
+.footer-menu ul li a:hover i {
+  color: #21b44e;
+}
+.tweet-feed .owl-theme .owl-controls .owl-buttons div:hover {
+  color: #21b44e;
+}
+.features-item a{
+  color: #21b44e;
+}
+.features-item i{
+  background-color: #21b44e;
+}
+.home-new-classes .owl-theme .owl-controls .owl-buttons div:hover {
+  color: #21b44e;
+}
+.classes-gallery figure{
+  background-color: #21b44e;
+}
+.classes-gallery h2 strong{
+  border-bottom-color: #21b44e;
+  color: #21b44e;
+}
+.plan-item li:first-child{
+  color: #21b44e;
+}
+.testimonials-item p span{
+  color: #21b44e;
+}
+.class-experience-ring .chart{
+  color: #21b44e;
+}
+.slider-range .slider.slider-horizontal .slider-track{
+  background: #21b44e;
+}
+.slider-range .slider.slider-horizontal .slider-selection{
+  background: #21b44e;
+}
+.store-grid .store-item .foot .price span{
+  color: #21b44e;
+}
+.store-single-picture .owl-theme .owl-controls .owl-buttons div:hover {
+  color: #21b44e;
+}
+.zoomLens {
+  border-color: #21b44e !important;
+}
+.sidebar-twitter .tweet_list li .user {
+  color: #21b44e;
+}
+.event-item .ammount{
+  color: #21b44e;
+}
+.event-item .ammount-news{
+  color: #21b44e;
+}
+.comments-item span em{
+  color: #21b44e;
+}
+.comments-item .reply-link {
+  color: #21b44e;
+}
+.news-single-item ul i{
+  color: #21b44e;
+}
+.news-single-item h6 a{
+  color: #21b44e;
+}
+.news-single-item p a{
+  color: #21b44e;
+}
+/******* $Light *******/
+.offer h4{
+  color: #5cd380;
+}
+.btn.btn-offer{
+  border-color: #5cd380;
+  color: #5cd380;
+}
+.btn.btn-offer:hover {
+  background-color: #5cd380;
+}
+.btn.btn-testimonials {
+  border-color: #5cd380;
+}
+/******* $RGB *******/
+.carousel-control:hover{
+  background-color: rgba(33,180,78,0.7);
+}
+.flickr-feed li a:before{
+  background-color: rgba(33,180,78,0.7);
+}

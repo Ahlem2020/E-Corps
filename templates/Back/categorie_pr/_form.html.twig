@@ -1,0 +1,25 @@
+<div id="flActionButtons" class="col-lg-12">
+    <div class="statbox widget box box-shadow">
+        <div class="widget-header">
+            <div class="row">
+                <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+
+                </div>
+            </div>
+        </div>
+        <div class="widget-content widget-content-area">
+{{ form_start(form,{'attr': {'novalidate': 'novalidate'}})}}
+
+            <div class="form-group mb-4">
+                <label >Catégorie</label>
+{{ form_row(form.Description,{'attr': {'class': 'form-control'}}) }}
+
+            </div>
+    <button  class="btn btn-secondary mb-2">{{ button_label|default('Ajouter') }}</button>
+
+
+{{ form_end(form) }}
+        </div>
+    </div>
+</div>
+

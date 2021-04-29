@@ -1,0 +1,12 @@
+{% extends 'BaseBack.html.twig' %}
+
+{% block title %}New CategoriePr{% endblock %}
+
+{% block body %}
+    <h1>Ajouter une catégorie</h1>
+<div class="statbox widget box box-shadow">
+    {{ include('/Back/categorie_pr/_form.html.twig') }}
+
+    <a href="{{ path('categorie_pr_index') }}" class="btn btn-outline-primary mb-2">Retour aux categories</a>
+</div>
+    {% endblock %}

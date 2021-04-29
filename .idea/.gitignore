@@ -2,7 +2,7 @@
 /shelf/
 /workspace.xml
 # Datasource local storage ignored files
-/../../../../../../:\xampp\htdocs\PIDEV\Dashboard\.idea/dataSources/
+/../../../../../:\xamp\htdocs\GestionProduit\.idea/dataSources/
 /dataSources.local.xml
 # Editor-based HTTP Client requests
 /httpRequests/
