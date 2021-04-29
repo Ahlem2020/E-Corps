@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Commentairee;
+use App\Entity\Comments;
 use App\Form\CommentaireeType;
+use App\Form\CommentsType;
 use App\Repository\EventRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,6 +15,11 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Event;
 use App\Entity\Categorieevent;
 
+/**
+ * Class HomeController
+ * @Route ("/",name="")
+ * @package App\Controller
+ */
 
 
 class HomeController extends AbstractController
@@ -60,29 +67,36 @@ class HomeController extends AbstractController
     /**
      * @Route("/Actualites/Events/{idEvent}", name="events_Details")
      */
-    public function detailsEvent(Event $Event): Response
-    {
+    public function detailsEvent(Event $Event,Request $request): Response
+    {   $E=$this->getDoctrine()->getRepository(Event::class)->find($Event);
         $Categorieevent=$this->getDoctrine()->getRepository(Categorieevent::class)->findAll();
+        //partie commentaire
+        $comment=new Comments();
+        $CommentForm=$this->createForm(CommentsType::class,$comment);
+        $CommentForm->handleRequest($request);
+        //traitement de formulaire
+        if($CommentForm->isSubmitted() && $CommentForm->isValid()){
+            $comment->setCreatedAt(new \DateTime());
+            $comment->setEvents($E);
+            $em=$this->getDoctrine()->getManager();
+            $em->persist($comment);
+            $em->flush();
+            $this->addFlash('message','votre commentaire a bien été envoyé');
+          return  $this->redirectToRoute("events_Details",['idEvent' =>$Event->getIdEvent()]);
+
+        }
+
+
+
 
         return $this->render('home/details.html.twig', [
             'Event' => $Event,
-            'Categorieevent'=>$Categorieevent
+            'Categorieevent'=>$Categorieevent,
+            'CommentForm'=>$CommentForm->createView()
 
         ]);
     }
-    /**
-     * @Route("/Actualites/Events/{idEvent}/Commentaire", name="events_Details")
-     */
-    public function Comment(Event $Event): Response
-    {
-        $Categorieevent=$this->getDoctrine()->getRepository(Categorieevent::class)->findAll();
 
-        return $this->render('home/details.html.twig', [
-            'Event' => $Event,
-            'Categorieevent'=>$Categorieevent
-
-        ]);
-    }
 
 
 
