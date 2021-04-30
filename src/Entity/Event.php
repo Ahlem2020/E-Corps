@@ -5,6 +5,8 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Categorieevent;
+
 
 /**
  * Event
@@ -73,7 +75,7 @@ class Event
     private $nbrParticipant;
 
     /**
-     * @var \Categorieevent
+     * @var Categorieevent
      *
      * @ORM\ManyToOne(targetEntity=Categorieevent::class)
      * @ORM\JoinColumns({
@@ -181,11 +183,6 @@ class Event
         return $this;
     }
 
-    public function getCategoriee(): ?Categorieevent
-    {
-        return $this->categoriee;
-    }
-
     public function setCategoriee(?Categorieevent $categoriee): self
     {
         $this->categoriee = $categoriee;
@@ -229,6 +226,11 @@ class Event
         $this->nbrParticipant = $this->nbrParticipant - 1;
 
         return $this;
+    }
+
+    public function getCategoriee(): ?Categorieevent
+    {
+        return $this->categoriee;
     }
 
 

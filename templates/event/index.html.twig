@@ -32,11 +32,22 @@
                             </tr>
                         </thead>
                         <tbody id="content">
-                        {% include 'event/content.html.twig' with {events: events} only %}
+                        {% include 'event/content.html.twig' with {Event: Event} only %}
                         </tbody>
                     </table>
 
                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-9">
+                                <ul class="pagination">
+                                    <li>
+                                    {{ knp_pagination_render(Event) }}
+                                    </li>
+                                </ul>
+                        </div>
+                    </div>
                 </div>
                                        <a href="{{ path('event_new') }}" class="btn btn-primary ml-3 mt-3">Ajouter Event</a>
 
@@ -54,7 +65,7 @@
             $('#search').keyup(function(e){
                 var value = $(this).val();
                 $.ajax({
-                    url : "http://127.0.0.1:8000/event/?search="+value,
+                    url : "http://127.0.0.1:8000/admin/?search="+value,
                     type : 'GET',
                     data: {
                         'searchValue' : value

@@ -12,8 +12,10 @@
                         </figure>
                         <div class="resume">
                             <ul>
-                                <li><strong>Date Début :{{ Event.dateDebEvent ? Event.dateDebEvent|date('Y-m-d') : '' }}</strong> </li>
-                                <li><strong>Date Fin :{{ Event.dateFinEvent ? Event.dateFinEvent|date('Y-m-d') : '' }}</strong> </li>
+                                <li><strong>Date Début
+                                        :{{ Event.dateDebEvent ? Event.dateDebEvent|date('Y-m-d') : '' }}</strong></li>
+                                <li><strong>Date Fin
+                                        :{{ Event.dateFinEvent ? Event.dateFinEvent|date('Y-m-d') : '' }}</strong></li>
 
                             </ul>
 
@@ -22,10 +24,10 @@
                 </div>
                 <div class="col-md-6">
                     <div class="event-item event-single">
-                        <h2>{{ Event.nomEvent}}</h2>
+                        <h2>{{ Event.nomEvent }}</h2>
                         <br>
                         {% if Event.isactive==0 %}
-                            <div class="ammount">Disponible </div>
+                            <div class="ammount">Disponible</div>
 
                         {% elseif Event.isactive==1 %}
                             <div class="ammount">Non Disponible</div>
@@ -33,8 +35,8 @@
                         <br>
                         <p>{{ Event.descriptionEvent }}</p>
 
-                                            <blockquote> <i class=""></i>
-                                                    {{ form(ParticipantForm) }}
+                        <blockquote><i class=""></i>
+                            {{ form(ParticipantForm) }}
                             </p>
                         </blockquote>
                         <br>
@@ -45,7 +47,7 @@
                     </div>
                 </div>
             </div>
-            <blockquote> <i class="fa fa-comments" aria-hidden="true"></i>
+            <blockquote><i class="fa fa-comments" aria-hidden="true"></i>
                 <p>Commentaires</p>
             </blockquote>
 
@@ -57,36 +59,41 @@
                         <figure><img src="{{ asset('img/people/commnet01.jpg') }}" alt="//">
                         </figure>
 
-                        <a href="#Ajouter_comment" class="reply-link pull-right" data-reply data-id="{{ comment.id }}"><i class="fa fa-mail-forward"></i>Répondre</a>
-                        <span>Publié par <strong> {{ comment.nickname}}</strong></span><span>le <em>
-                                {{ comment.createdat | date("d/m/y H:i")}}</em></span>
+                        <a href="#Ajouter_comment" class="reply-link pull-right" data-reply
+                           data-id="{{ comment.id }}"><i class="fa fa-mail-forward"></i>Répondre</a>
+                        <span>Publié par <strong> {{ comment.nickname }}</strong></span><span>le <em>
+                                {{ comment.createdat | date("d/m/y H:i") }}</em></span>
                         <p>{{ comment.content | raw }}</p>
                     </div>                {% endfor %}
                 <h4 id="Ajouter_comment">Ajouter un Commentaire</h4>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
 
-                   {{ form(CommentForm) }}
-                            </div>
+                            {{ form(CommentForm) }}
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                        </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
                     </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-response"></div>
-                        </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-response"></div>
                     </div>
+                </div>
                 </form>
             </div>
             <h4>Partager:</h4>
             <ul class="social social-circled">
-            <div id="fb-root"></div>
-            <script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v10.0" nonce="q5ZeQXZJ"></script>
-            <div class="fb-share-button" data-href="http://127.0.0.1:8000/Actualites/Events/119" data-layout="button" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A8000%2FActualites%2FEvents%2F119&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Partager</a></div>
+                <div id="fb-root"></div>
+                <script async defer crossorigin="anonymous"
+                        src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v10.0" nonce="q5ZeQXZJ"></script>
+                <div class="fb-share-button" data-href="http://127.0.0.1:8000/Actualites/Events/119"
+                     data-layout="button" data-size="large"><a target="_blank"
+                                                               href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A8000%2FActualites%2FEvents%2F119&amp;src=sdkpreparse"
+                                                               class="fb-xfbml-parse-ignore">Partager</a></div>
 
                 <li><a href="#" class="twitter"><i class="fa fa-instagram"></i></a></li>
 
@@ -94,4 +101,4 @@
 
         </div>
     </article>
-{% endblock  %}
+{% endblock %}

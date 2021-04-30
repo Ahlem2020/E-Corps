@@ -44,7 +44,7 @@
             $('#search').keyup(function(e){
                 var value = $(this).val();
                 $.ajax({
-                    url : "http://127.0.0.1:8000/home/?search="+value,
+                    url : "http://127.0.0.1:8000/Actualites/Events?search="+value,
                     type : 'GET',
                     data: {
                         'searchValue' : value

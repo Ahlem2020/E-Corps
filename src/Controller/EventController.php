@@ -7,6 +7,8 @@ use App\Entity\Event;
 use Swift_Message;
 use Swift_Mailer;
 use App\Form\EventType;
+use Knp\Component\Pager\PaginatorInterface;
+
 use App\Repository\EventRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -22,20 +24,26 @@ class EventController extends AbstractController
     /**
      * @Route("/", name="event_index", methods={"GET"})
      */
-    public function index(EventRepository $repository): Response
+    public function index(EventRepository $repository,PaginatorInterface $paginator, Request $request): Response
     {
-        $events = $this->getDoctrine()
-            ->getRepository(Event::class)
-            ->findAll();
+        $allevent = $this->getDoctrine()->getRepository(Event::class)->findBy([], ['dateDebEvent' => 'ASC']);
+
         if(isset($_GET['search'])) {
             $requestString = $_GET['search'];
-            $events = $repository->findStudentByNsc($requestString);
+            $Event = $repository->findStudentByNsc($requestString);
 
 
-            return $this->json(['retour' => $this->renderView('event/content.html.twig', ['events' => $events])]);
+            return $this->json(['retour' => $this->renderView('event/content.html.twig', ['Event' => $Event])]);
         }
+        $Event = $paginator->paginate(
+            $allevent,
+            $request->query->getInt('page', 1),
+            1
+        );
+
+
         return $this->render('event/index.html.twig', [
-            'events' => $events,
+            'Event' => $Event,
         ]);
     }
 

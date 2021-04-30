@@ -31,13 +31,12 @@ class HomeController extends AbstractController
     {
         //on appelle la liste des tous les evenements
         $Event = $this->getDoctrine()->getRepository(Categorieevent::class)->findAll();
-        if (isset($_GET['search'])) {
+        if(isset($_GET['search'])) {
             $requestString = $_GET['search'];
-            $events = $repository->findStudentByNsc($requestString);
+            $Event = $repository->findStudentByNsc($requestString);
 
 
-            return $this->json(['retour' => $this->renderView('home/content.html.twig',
-                ['Event' => $events])]);
+            return $this->json(['retour' => $this->renderView('event/content.html.twig', ['Event' => $Event])]);
         }
         return $this->render('home/index.html.twig', [
             'Event' => $Event
@@ -75,14 +74,14 @@ class HomeController extends AbstractController
         //partie partcipation
 
         $Participant = new Participante();
-        $ParticipantForm=$this->createForm(ParticipanteType::class,$Participant);
+        $ParticipantForm = $this->createForm(ParticipanteType::class, $Participant);
         $ParticipantForm->handleRequest($request);
-        if ($ParticipantForm->isSubmitted()){
+        if ($ParticipantForm->isSubmitted()) {
 
 
-        $ent = $this->getDoctrine()->getManager();
-        $Participant->setComptelogin("20202");
-        $Participant->setIdEvent($E);
+            $ent = $this->getDoctrine()->getManager();
+            $Participant->setComptelogin("20202");
+            $Participant->setIdEvent($E);
             $E->countParticipant();
             $ent->flush();
             $this->addFlash('message', 'vous participez à notre événement avec succès'); // Permet un message flash de renvoi
@@ -111,7 +110,7 @@ class HomeController extends AbstractController
             'Event' => $Event,
             'Categorieevent' => $Categorieevent,
             'CommentForm' => $CommentForm->createView(),
-            'ParticipantForm'=>$ParticipantForm->createView(),
+            'ParticipantForm' => $ParticipantForm->createView(),
         ]);
     }
 
