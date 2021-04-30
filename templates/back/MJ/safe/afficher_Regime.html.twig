@@ -1,0 +1,84 @@
+{% extends 'BaseBack.html.twig' %}
+{% block title %}
+    Regimes
+{% endblock %}
+{% block body %}
+    <style>
+        .box {
+            opacity: 35%;
+            position: absolute;
+            background: dodgerblue;
+            top: 260px;
+            left: 1050px;
+            width: 240px;
+            height: 45px;
+            border: 3px solid lightgreen;
+            border-radius: 8px;
+            border-style: wave;
+        }
+        .box2 {
+            opacity: 35%;
+            position: absolute;
+            background: dodgerblue;
+            top: 260px;
+            left: 1050px;
+            width: 240px;
+            height: 45px;
+            border: 3px solid lightgreen;
+            border-radius: 8px;
+            border-style: wave;
+        }
+    </style>
+    {% for message in app.flashes('success') %}
+        <div class="box">
+            <h3 style="color:lightgreen ">{{ message }}</h3>
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('mod') %}
+        <div class="box2">
+            <h3 style="color:lightgreen ">{{ message }}</h3>
+        </div>
+    {% endfor %}
+
+
+    <div id="content" class="main-content">
+        <a href="{{ path('back') }}" class="btn btn-primary">Main </a>
+        {{ form(form) }}
+        <h1>Table Regimes</h1>
+        <a href="{{ path('pdf') }}" class="btn btn-light-danger">PDF</a>
+    <table style="width:90%", class="center" border="1" bgcolor="#d3d3d3">
+        <thead>
+        <tr>
+            <td>Titre</td>
+            <td>Desc</td>
+            <td>ImgUml</td>
+            <td>Supprimer</td>
+            <td>Modifier</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for regimes in reg %}
+            <tr>
+                <td>{{ regimes.Titre }}</td>
+                <td>{{ regimes.Description }}</td>
+                <td>{{ regimes.ImgUml }}</td>
+                <td><a href="{{ absolute_url(asset('')) }}back/MJ/Safe_sup/{{ regimes.id }}" class="btn btn-danger">SUPPRIMER</a> </td>
+                <td><a href="{{ absolute_url(asset('')) }}back/MJ/Safe_mod/{{ regimes.id }}" class="btn btn-dark">MODIFIER</a> </td>
+
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+            <a href="{{ path('Safe_gest') }}" class="btn btn-primary">AJOUTER </a>
+        <h1></h1>
+            <a href="{{ path('club') }}" class="btn btn-outline-danger">Repas </a>
+
+    </div>
+
+{% endblock %}

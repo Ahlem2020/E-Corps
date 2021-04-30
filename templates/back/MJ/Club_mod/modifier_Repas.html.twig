@@ -1,0 +1,53 @@
+{% extends 'BaseBack.html.twig' %}
+{% block body %}
+
+    <style>
+        .box {
+            opacity: 35%;
+            position: absolute;
+            background: slategray;
+            top: 50px;
+            left: 750px;
+            width: 210px;
+            height: 145px;
+            border: 3px solid #46b8da;
+            border-radius: 5px;
+            border-style: double;
+        }
+        .p1 {
+            font-family: Arial, Helvetica, sans-serif;
+            color:midnightblue;
+            font-size:23px;
+            font-weight: bold;
+        }
+    </style>
+
+
+
+    <div id="content" class="main-content">
+        {% for message in app.flashes('error_mod') %}
+            <div class="box">
+                <p class="p1">{{ message }}</p>
+            </div>
+        {% endfor %}
+
+        <h1>Modifier Repas</h1>
+{{ form_start(post_form,{'attr': {'novalidate': 'novalidate'}}) }}
+
+<h3>{{ form_errors(post_form.titre) }}
+{{ form_label(post_form.titre,"Titre Repas") }}
+{{ form_widget(post_form.titre) }}</h3>
+<h3>{{ form_errors(post_form.description) }}
+{{ form_label(post_form.description,"description Repas") }}
+{{ form_widget(post_form.description) }}</h3>
+<h3>{{ form_errors(post_form.imguml) }}
+{{ form_label(post_form.imguml,"imguml Repas") }}
+{{ form_widget(post_form.imguml) }}</h3>
+<h3>{{ form_errors(post_form.id_regime) }}
+    {{ form_label(post_form.id_regime,"Titre Regime") }}
+    {{ form_widget(post_form.id_regime) }}</h3>
+
+{{ form_end(post_form) }}
+        <a href="{{ path('club') }}" class="btn btn-outline-danger">Page Repas </a>
+    </div>
+{% endblock %}

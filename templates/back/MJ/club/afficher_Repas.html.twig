@@ -1,0 +1,87 @@
+{% extends 'BaseBack.html.twig' %}
+{% block title %}
+Repas
+{% endblock %}
+
+
+{% block body %}
+    <style>
+    .box {
+        opacity: 35%;
+        position: absolute;
+        background: dodgerblue;
+        top: 150px;
+        left: 1050px;
+    width: 170px;
+    height: 45px;
+        border: 3px solid lightgreen;
+        border-radius: 8px;
+        border-style: wave;
+    }
+    .box2 {
+        opacity: 35%;
+        position: absolute;
+        background: dodgerblue;
+        top: 150px;
+        left: 1050px;
+        width: 199px;
+        height: 45px;
+        border: 3px solid lightgreen;
+        border-radius: 8px;
+        border-style: wave;
+    }
+    </style>
+    {% for message in app.flashes('success') %}
+        <div class="box">
+            <h3 style="color:lightgreen ">{{ message }}</h3>
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('mod') %}
+        <div class="box2">
+            <h3 style="color:lightgreen ">{{ message }}</h3>
+        </div>
+    {% endfor %}
+
+    <div id="content" class="main-content">
+        <a href="{{ path('back') }}" class="btn btn-primary">Main </a>
+        {{ form(form) }}
+        <h1>Table Repas</h1>
+        <a href="{{ path('pdf1') }}" class="btn btn-light-danger">PDF</a>
+<table style="width:90%", border="1" bgcolor="#d3d3d3">
+    <thead>
+        <tr>
+            <td>Titre</td>
+            <td>Desc</td>
+            <td>ImgUml</td>
+            <td>regime correspendant</td>
+            <td>Supprimer</td>
+            <td>Modifier</td>
+        </tr>
+    </thead>
+    <tbody>
+    {% for repas in rep %}
+    <tr>
+        <td>{{ repas.Titre }}</td>
+        <td>{{ repas.Description }}</td>
+        <td>{{ repas.ImgUml }}</td>
+        <td>{{ repas.IdRegime }}</td>
+        <td><a href="{{ absolute_url(asset('')) }}back/MJ/Club_sup/{{ repas.id }}" class="btn btn-danger">SUPPRIMER</a> </td>
+        <td><a href="{{ absolute_url(asset('')) }}back/MJ/Club_mod/{{ repas.id }}" class="btn btn-dark">MODIFIER</a> </td>
+
+    </tr>
+    {% else %}
+        <tr>
+            <td colspan="7">no records found</td>
+        </tr>
+        {% endfor %}
+
+    </tbody>
+    </table>
+        <a href="{{ path('Club_gest') }}" class="btn btn-primary">AJOUTER </a>
+        <h1></h1>
+        <a href="{{ path('safe') }}" class="btn btn-outline-danger">Regimes </a>
+
+    </div>
+
+
+{% endblock %}

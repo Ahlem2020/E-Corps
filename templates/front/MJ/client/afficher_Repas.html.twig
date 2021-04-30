@@ -1,0 +1,39 @@
+{% extends 'BaseFront.html.twig' %}
+{% block body %}
+
+
+
+
+    <a href="{{ path('front') }}" class="btn btn-danger">Main </a>
+    <h3></h3>
+    <table style="width:90%", border="1" bgcolor="#7cfc00">
+        <thead>
+        <tr>
+            <td>Titre</td>
+            <td>Desc</td>
+            <td>ImgUml</td>
+            <td>Nom Regime</td>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for repas in rep %}
+            <tr>
+                <td>{{ repas.Titre }}</td>
+                <td>{{ repas.Description }}</td>
+                <td>{{ repas.ImgUml }}</td>
+                <td>{{ repas.idRegime }}</td>
+
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+    <h1></h1>
+    <a href="{{ path('client2') }}" class="btn btn-danger">Regimes </a>
+    <h1></h1>
+{% endblock %}
