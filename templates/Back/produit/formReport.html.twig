@@ -1,0 +1,57 @@
+<style>
+
+    .custom-file-input{
+        width: 50%;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 1rem;
+        border-radius: 1rem;
+        background: linear-gradient(to right, #aa4b6b, #6b6b83, #3b8d99);
+        color: white;
+        font-family: sans-serif;
+        transition: all .5s;
+        box-shadow: 1px 1px 15px 3px gray;
+    }
+
+</style>
+
+
+
+<div id="flActionButtons" class="col-lg-12">
+    <div class="statbox widget box box-shadow">
+        <div class="widget-header">
+            <div class="row">
+                <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+
+                </div>
+            </div>
+        </div>
+        <div class="widget-content widget-content-area">
+            {{ form_start(formreport,{'attr': {'novalidate': 'novalidate'}})  }}
+            <div class="form-group mb-4">
+                {{ form_row(formreport.NomProduit,{'attr': {'class': 'form-control'}}) }}
+                {{ form_row(formreport.Description,{'attr': {'class': 'form-control'}}) }}
+                {{ form_row(formreport.Description,{'attr': {'class': 'form-control'}}) }}
+                {{ form_row(formreport.Prix,{'attr': {'class': 'form-control'}}) }}
+                {{ form_row(formreport.Quantite,{'attr': {'class': 'form-control'}}) }}
+                {#  {{ form_row(form.Image,{'attr': {'class': 'form-control'}}) }}#}
+                <label for="">Image</label>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="produit_Image" name="produit[Image]">
+                    <label class="custom-file-label" for="produit_Image">Choisir une image</label>
+                </div>
+                {{ form_row(formreport.Categories,{'attr': {'class': 'form-control'}}) }}
+                {{ form_row(formreport.Reports,{'attr': {'class': 'form-control'}}) }}
+                <br/>
+                <button class="btn btn-secondary mb-2" >{{ button_label|default('Ajouter') }}</button>
+                {{ form_end(formreport, {'render_rest': false}) }} {# do not render anything else #}
+            </div>
+        </div>
+    </div>
+
+</div>
+

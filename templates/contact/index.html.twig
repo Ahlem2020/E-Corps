@@ -1,0 +1,29 @@
+{% extends 'BaseFront.html.twig' %}
+
+{% block title %}Hello ContactController!{% endblock %}
+
+{% block body %}
+<h2 style="color: #1e7e34; margin-left: 200px">Voulez-vous ajouter des informations supplémentaires ?</h2>
+
+<br/>
+    {{ form_start(contactForm,{'attr': {'novalidate': 'novalidate'}})  }}
+<div style="margin-left: 200px" class="form-group mb-4">
+
+    <label > Nom de produit signalés</label>
+    {{ form_row(contactForm.Nom,{'attr': {'class': 'form-control'}}) }}
+    {{ form_row(contactForm.Email,{'attr': {'class': 'form-control'}}) }}
+    {{ form_row(contactForm.Message,{'attr': {'class': 'form-control'}}) }}
+
+
+    <br/>
+    <button class="btn btn-secondary mb-2" >{{ button_label|default('Envoyer') }}</button>
+    {{ form_end(contactForm)}}
+    <a href="{{ path('produitFront_index') }}" type="submit" class="btn btn-outline-primary mb-2" style="float: right" >Non, merci</a>
+
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    </div>
+{% endblock %}

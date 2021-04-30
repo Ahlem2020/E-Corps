@@ -1,0 +1,75 @@
+<style>
+
+    .custom-file-input{
+        width: 50%;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 1rem;
+        border-radius: 1rem;
+        background: linear-gradient(to right, #aa4b6b, #6b6b83, #3b8d99);
+        color: white;
+        font-family: sans-serif;
+        transition: all .5s;
+        box-shadow: 1px 1px 15px 3px gray;
+    }
+
+</style>
+
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+
+<div id="flActionButtons" class="col-lg-12">
+    <div class="statbox widget box box-shadow">
+        <div class="widget-header">
+            <div class="row">
+                <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                </div>
+            </div>
+        </div>
+        <div class="widget-content widget-content-area">
+{{ form_start(form,{'attr': {'id': 'my_captcha_form','novalidate': 'novalidate'}})}}
+            <div class="form-group mb-4">
+                {{ form_row(form.NomProduit,{'attr': {'class': 'form-control'}}) }}
+                {{ form_row(form.Description,{'attr': {'class': 'form-control'}}) }}
+                {{ form_row(form.Prix,{'attr': {'class': 'form-control'}}) }}
+                {{ form_row(form.Quantite,{'attr': {'class': 'form-control'}}) }}
+                {#  {{ form_row(form.Image,{'attr': {'class': 'form-control'}}) }}#}
+                <label for="">Image</label>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="produit_Image" name="produit[Image]">
+                    <label class="custom-file-label" for="produit_Image">Choisir une image</label>
+                </div>
+                {{ form_row(form.Categories,{'attr': {'class': 'form-control'}}) }}
+
+                <div class="g-recaptcha"
+                     data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+                ></div>
+
+<br/>
+    <button class="btn btn-secondary mb-2" >{{ button_label|default('Ajouter') }}</button>
+                {{ form_end(form, {'render_rest': false}) }} {# do not render anything else #}
+        </div>
+    </div>
+</div>
+
+</div>
+
+<script>
+    document.getElementById("my_captcha_form").addEventListener("submit",function(evt)
+    {
+        var response = grecaptcha.getResponse();
+        if(response.length == 0)
+        {
+            //reCaptcha not verified
+            alert("please verify you are humann!");
+            evt.preventDefault();
+            return false;
+        }
+        //captcha verified
+        //do the rest of your validations here
+    });
+</script>

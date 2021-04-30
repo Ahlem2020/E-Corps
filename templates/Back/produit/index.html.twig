@@ -1,0 +1,208 @@
+{% extends 'BaseBack.html.twig' %}
+
+
+{% block title %}Produit index{% endblock %}
+
+{% block body %}
+{# <script>
+        function myFunction() {
+            confirm("Press a button!");
+        }
+    </script> #}
+
+
+    <style>
+        a#tooltipdemo {
+            position: relative ;
+        }
+        a#tooltipdemo:hover::after {
+            content: "Détails" ;
+            font-weight: bold;
+            text-align: center;
+            position: absolute ;
+            width: 120px;
+            bottom: 170%;
+            left: 60%;
+            margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
+            min-width: 130px ;
+            border: 1px #808080 ;
+            border-radius: 6px;
+            padding: 8px ;
+            color: white ;
+            background-color: #4361ee ;
+            z-index: 1 ;
+        }
+    </style>
+    <style>
+        a#tooltipdemo2 {
+            position: relative ;
+        }
+        a#tooltipdemo2:hover::after {
+            content: "Modification" ;
+            font-weight: bold;
+            text-align: center;
+            position: absolute ;
+            width: 120px;
+            bottom: 170%;
+            left: 60%;
+            margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
+            min-width: 130px ;
+            border: 1px #808080 ;
+            border-radius: 6px;
+            padding: 8px ;
+            color: white ;
+            background-color: #4361ee ;
+            z-index: 1 ;
+        }
+    </style>
+    <style>
+        a#tooltipdemo3 {
+            position: relative ;
+        }
+        a#tooltipdemo3:hover::after {
+            content: "Suppression" ;
+            font-weight: bold;
+            text-align: center;
+            position: absolute ;
+            width: 120px;
+            bottom: 110%;
+            left: 60%;
+            margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
+            min-width: 100px ;
+            border: 1px #808080 ;
+            border-radius: 6px;
+            padding: 8px ;
+            color: white ;
+            background-color: #4361ee ;
+            z-index: 1 ;
+        }
+    </style>
+
+    <style>
+        body {
+            background: black;
+        }
+        .button {
+            background-color: #004A7F;
+            -webkit-border-radius: 10px;
+            border-radius: 5px;
+            border: none;
+            color: #FFFFFF;
+            cursor: pointer;
+            display: inline-block;
+            font-size: 18px;
+            font-family: 'Nunito', sans-serif;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            -webkit-animation: glowing 1500ms infinite;
+
+        }
+        @-webkit-keyframes glowing {
+            0% { background-color: #4361ee; -webkit-box-shadow: 0 0 3px #4361ee; }
+            50% { background-color: #2196f3; -webkit-box-shadow: 0 0 40px #2196f3; }
+            100% { background-color: #4361ee; -webkit-box-shadow: 0 0 3px #4361ee; }
+        }
+
+    </style>
+<script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"></script>
+<link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css"/>
+{#
+<script type="text/javascript">
+    window.onload = function() {
+        L.mapquest.key = 'eXp9wRtoKlG1COwGgDy3TWPUHMm6GwGL';
+        var map = L.mapquest.map('map', {
+            center: [0, 0],
+            layers: L.mapquest.tileLayer('map'),
+            zoom: 14
+        });
+        L.mapquest.geocoding().geocode('Tunisia,Autoroute de Bizerte, Sabbelet Ben Ammar,Technopole El Ghazela 2');
+    }
+</script>
+    <div id="map" style="width: 100%; height: 530px;"></div>#}
+
+    <h1>Nos Produits</h1>
+    <a href="{{ path('produit_new') }}" type="submit"  class="btn btn-outline-primary mb-2">Ajouter un produit</a>
+    <a href="{{ path('categorie_pr_index') }}" type="submit"  class="btn btn-outline-primary mb-2" style="float: right">Les Categories</a>
+
+    {%  set X = 0 %}
+
+    {% for produit in produits %}
+        {% if produit.Reports >= 10 %}
+        {%  set X = X+1  %}
+        {% endif %}
+    {% endfor %}
+
+    {% if X > 0 %}
+    <a class="button" href="{{ path('produit_reports') }}" type="submit">Produit signalés</a>
+    {% endif %}
+
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover table-highlight-head mb-4" style="table-layout: fixed">
+        <thead>
+            <tr>
+                <th class="text-center">{{ knp_pagination_sortable(produits,'Produit','p.NomProduit') }}</th>
+                <th class="text-center">{{ knp_pagination_sortable(produits,'Description','p.Description') }}</th>
+                <th class="text-center">{{ knp_pagination_sortable(produits,'Prix','p.Prix') }}</th>
+                <th class="text-center">{{ knp_pagination_sortable(produits,'Quantité','p.Quantite') }}</th>
+                <th class="text-center" style="width: 220px">Image</th>
+                <th class="text-center">Categorie</th>
+                <th class="text-center">{{ knp_pagination_sortable(produits,'Reports','p.Reports') }}</th>
+                <th class="text-center" style="width: 168px">actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for produit in produits %}
+               {% if produit.Reports < 10 %}
+            <tr>
+                <td class="text-center">{{ produit.NomProduit }}</td>
+                <td class="text-center">{{ produit.Description|raw }}</td>
+                <td class="text-center">{{ produit.Prix }} DT</td>
+                <td class="text-center">{{ produit.Quantite }} pièces</td>
+                <td class="pic"><img style="height: 200px; width: 200px;" src="/imagez/{{ produit.Image }}" alt="Ce produit ne contient pas d'image"></td>
+                <td class="text-center">{{ produit.Categories }}</td>
+                {% if  produit.Reports  == null %}
+                    <td class="text-center">No reports </td>
+                {% else %}
+                    <td class="text-center">{{ produit.Reports }}</td>
+                    {% endif %}
+                <td>
+                    <a href="{{ path('produit_show', {'id': produit.id}) }}" style="padding-right: 20px" id="tooltipdemo" ><i class="material-icons">&#xE417;</i> </a>
+                    <a href="{{ path('produit_edit', {'id': produit.id}) }}" id="tooltipdemo2" ><i class="material-icons">&#xE254;</i></a>
+                    <form style="display: inline-block" method="post" action="{{ path('produit_delete', {'id': produit.id}) }}" onsubmit="return confirm('Voulez-vous supprimer ce produit?');">
+                        <input  type="hidden" name="_method" value="DELETE">
+                        <input  type="hidden" name="_token" value="{{ csrf_token('delete' ~ produit.id) }}">
+                        <button class="btn" style="background-color: transparent; border-color: transparent; margin-top: -11px; " ><a style="display: inline-block" type="submit"  href="{{ path('produit_index')}}" id="tooltipdemo3" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872; </i></a></button>
+                    </form>
+
+                </td>
+
+            </tr>
+            {% endif %}
+        {% else %}
+            <tr>
+                <td class="text-center" colspan="7">Tableau vide :( </td>
+            </tr>
+
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+    <a href="{{ path('pdflist') }}" class="btn btn-outline-primary mb-2"> List PDF</a>
+
+
+    {{ knp_pagination_render(produits) }}
+
+
+
+
+    <div id="div_chart"></div>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+        {{ gc_draw(pieChart, 'div_chart') }}
+    </script>
+
+
+
+    {% endblock %}

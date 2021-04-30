@@ -1,0 +1,32 @@
+{% extends 'BaseBack.html.twig' %}
+
+{% block title %}CategoriePr{% endblock %}
+
+{% block body %}
+    <h1>Categorie</h1>
+
+   {#  <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ categorie_pr.id }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ categorie_pr.Description }}</td>
+            </tr>
+        </tbody>
+    </table> #}
+    <div class="card component-card_1">
+        <div class="card-body">
+            <h5 class="card-title">La Catégorie : {{ categorie_pr.Description }}</h5>
+
+        </div>
+    </div>
+<br/>
+    <a href="{{ path('categorie_pr_index') }}" type="submit" class="btn btn-outline-primary mb-2">Retour aux catégories</a>
+
+    <a href="{{ path('categorie_pr_edit', {'id': categorie_pr.id}) }}" type="submit" class="btn btn-outline-primary mb-2">Modifier</a>
+
+
+{% endblock %}
