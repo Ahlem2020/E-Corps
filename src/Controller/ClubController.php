@@ -27,7 +27,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ClubController extends AbstractController
 {
     /**
-     * @Route("/Club_gest", name="Club_gest")
+     * @Route("/back/MJ/Club_gest", name="Club_gest")
      */
     public function index(MailerInterface $mailer, Request $request): Response
     {
@@ -60,13 +60,13 @@ class ClubController extends AbstractController
             }
         }
 
-        return $this->render('Club_gest/ajouter_Repas.html.twig', [
+        return $this->render('back/MJ/Club_gest/ajouter_Repas.html.twig', [
             'post_form' => $form->createView()
 
         ]);
     }
     /**
-     * @Route("/club", name="club")
+     * @Route("/back/MJ/club", name="club")
      */
     public function viewRepasAction(Request $request,MyClassRepository $repo)
     {
@@ -79,14 +79,14 @@ class ClubController extends AbstractController
             $repas= $repo->search(
                 $search->get('mots')->getData()
             );
-            return $this->render('club/afficher_Repas.html.twig', ['rep' => $repas, 'form' => $form->createView()]);
+            return $this->render('back/MJ/club/afficher_Repas.html.twig', ['rep' => $repas, 'form' => $form->createView()]);
         }
 
         $rep = $this->getDoctrine()->getRepository(Repas::class)->findAll();
-        return $this->render('club/afficher_Repas.html.twig', ['rep' => $rep, 'form' => $form->createView()]);
+        return $this->render('back/MJ/club/afficher_Repas.html.twig', ['rep' => $rep, 'form' => $form->createView()]);
     }
     /**
-     * @Route("/Club_sup/{id}", name="Club_sup")
+     * @Route("/back/MJ/Club_sup/{id}", name="Club_sup")
      */
     public function deleteRepasAction($id)
     {
@@ -100,7 +100,7 @@ class ClubController extends AbstractController
 
     }
     /**
-     * @Route("/Club_mod/{id}", name="Club_mod")
+     * @Route("/back/MJ/Club_mod/{id}", name="Club_mod")
      */
     public function editRepasAction(Request $request, $id, MailerInterface $mailer)
     {
@@ -153,7 +153,7 @@ class ClubController extends AbstractController
             }
         }
 
-        return $this->render('Club_mod/modifier_Repas.html.twig', [
+        return $this->render('back/MJ/Club_mod/modifier_Repas.html.twig', [
             'post_form' => $form->createView()
 
         ]);
@@ -161,25 +161,25 @@ class ClubController extends AbstractController
     }
 
     /**
-     * @Route("/client", name="client")
+     * @Route("/front/MJ/client", name="client")
      */
     public function view2RepasAction()
     {
         $rep = $this->getDoctrine()->getRepository(Repas::class)->findAll();
-        return $this->render('client/afficher_Repas.html.twig', ['rep' => $rep]);
+        return $this->render('front/MJ/client/afficher_Repas.html.twig', ['rep' => $rep]);
     }
     /**
-     * @Route("/", name="front")
+     * @Route("/front/MJ/front", name="front")
      */
     public function view3RepasAction()
     {
         $rep = $this->getDoctrine()->getRepository(Repas::class)->findAll();
-        return $this->render('front/Main.html.twig', ['rep' => $rep]);
+        return $this->render('front/MJ/front/Main.html.twig', ['rep' => $rep]);
     }
 
 
     /**
-     * @Route("/PDF", name="pdf")
+     * @Route("/back/MJ/PDF1", name="pdf1")
      */
     public function PDFAction(Request $request)
     {
@@ -193,7 +193,7 @@ class ClubController extends AbstractController
         $dompdf = new Dompdf($pdfOptions);
 
         // Retrieve the HTML generated in our twig file
-        $html = $this->renderView('Club/afficher_Repas.html.twig', [
+        $html = $this->renderView('back/MJ/club/afficher_Repas.html.twig', [
                 'rep' => $rep,'form' => $form->createView()
             ]
         );

@@ -1,12 +1,12 @@
 knp_snappy:
     pdf:
         enabled:    true
-        binary:     '"C:\Users\ALPHA\Desktop\mehdi\wkhtmltopdf\bin\wkhtmltopdf"'
+        binary:     "\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe\""
         options:
             no-outline: true
             page-size: LETTER
             encoding: UTF-8
     image:
         enabled:    true
-        binary:     '"C:\Users\ALPHA\Desktop\mehdi\wkhtmltopdf\bin\wkhtmltoimage"'
+        binary:     "\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltoimage.exe\""
         options:    []

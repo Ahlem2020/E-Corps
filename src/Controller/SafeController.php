@@ -20,6 +20,7 @@ use Symfony\Component\Mime\Email;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
+use Knp\Bundle\SnappyBundle\Snappy\Response\JpegResponse;
 use Knp\Snappy\Pdf;
 
 
@@ -27,7 +28,7 @@ use Knp\Snappy\Pdf;
 class SafeController extends AbstractController
 {
     /**
-     * @Route("/safe", name="safe")
+     * @Route("/back/MJ/safe", name="safe")
      */
     public function viewRegimeAction(Request $request,MyClassRepository2 $repo)
     {
@@ -40,14 +41,14 @@ class SafeController extends AbstractController
             $regime= $repo->search(
                 $search->get('mots')->getData()
             );
-            return $this->render('safe/afficher_Regime.html.twig', ['reg' => $regime, 'form' => $form->createView()]);
+            return $this->render('back/MJ/safe/afficher_Regime.html.twig', ['reg' => $regime, 'form' => $form->createView()]);
         }
 
         $rep = $this->getDoctrine()->getRepository(Regimes::class)->findAll();
-        return $this->render('safe/afficher_Regime.html.twig', ['reg' => $rep, 'form' => $form->createView()]);
+        return $this->render('back/MJ/safe/afficher_Regime.html.twig', ['reg' => $rep, 'form' => $form->createView()]);
     }
     /**
-     * @Route("/Safe_sup/{id}", name="Safe_sup")
+     * @Route("/back/MJ/Safe_sup/{id}", name="Safe_sup")
      */
     public function deleteregimesAction($id)
     {
@@ -62,7 +63,7 @@ class SafeController extends AbstractController
     }
 
     /**
-     * @Route("/Safe_gest", name="Safe_gest")
+     * @Route("/back/MJ/Safe_gest", name="Safe_gest")
      */
     public function index(MailerInterface $mailer,Request $request): Response
     {
@@ -92,13 +93,13 @@ class SafeController extends AbstractController
             }
         }
 
-        return $this->render('Safe_gest/ajouter_Regime.html.twig', [
+        return $this->render('back/MJ/Safe_gest/ajouter_Regime.html.twig', [
             'post_form' => $form->createView()
 
         ]);
     }
     /**
-     * @Route("/Safe_mod/{id}", name="Safe_mod")
+     * @Route("/back/MJ/Safe_mod/{id}", name="Safe_mod")
      */
     public function editRegimeAction(Request $request, $id, MailerInterface $mailer)
     {
@@ -142,29 +143,29 @@ class SafeController extends AbstractController
 
             }
         }
-        return $this->render('Safe_mod/modifier_Regime.html.twig', [
+        return $this->render('back/MJ/Safe_mod/modifier_Regime.html.twig', [
             'post_form' => $form->createView()
 
         ]);
 
     }
     /**
-     * @Route("client2", name="client2")
+     * @Route("/front/MJ/client2", name="client2")
      */
     public function view2RegimeAction()
     {
         $reg = $this->getDoctrine()->getRepository(Regimes::class)->findAll();
-        return $this->render('client2/afficher_Regime.html.twig', ['reg' => $reg]);
+        return $this->render('front/MJ/client2/afficher_Regime.html.twig', ['reg' => $reg]);
     }
     /**
-     * @Route("/back", name="back")
+     * @Route("/back/MJ/back", name="back")
      */
     public function view3regimesAction()
     {
-        return $this->render('back/Back.html.twig');
+        return $this->render('back/MJ/back/Back.html.twig');
     }
     /**
-     * @Route("/PDF", name="pdf")
+     * @Route("/back/MJ/PDF", name="pdf")
      */
     public function PDFAction(Request $request)
     {
@@ -176,7 +177,7 @@ class SafeController extends AbstractController
 
         $dompdf = new Dompdf($pdfOptions);
 
-        $html = $this->renderView('safe/afficher_Regime.html.twig', [
+        $html = $this->renderView('back/MJ/safe/afficher_Regime.html.twig', [
                 'reg' => $reg,'form' => $form->createView()
             ]
         );
@@ -197,4 +198,5 @@ class SafeController extends AbstractController
 
         return $this->redirectToRoute('safe');
     }
+
 }
