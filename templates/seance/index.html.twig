@@ -1,0 +1,154 @@
+{% extends 'BaseFront.html.twig' %}
+
+{% block title %}Seance index{% endblock %}
+
+
+
+{% block body %}
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <label for="Trier">Trier</label>
+    <select name="Trier" id="Trier">
+        <option value="">--Choisir une option de tri--</option>
+        <option value="1" id="parDateA" href="#">Par Date (Asc)</option>
+        <option value="2" id="parDateD" href="#">Par Date (Desc)</option>
+        <option value="3" id="parTitreA" href="#">Par Titre (Asc)</option>
+        <option value="4" id="parTitreD" href="#">Par Titre (Desc)</option>
+
+    </select>
+    <br>
+    <br>
+    <br>
+    <br>
+    <table class="table" id="t">
+        <thead>
+        <tr>
+            <th>Titre</th>
+            <th>Description</th>
+            <th>Date de seance</th>
+            <th>Coach</th>
+            <th>N.Routine</th>
+            <th>Likes</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody id="trie">
+        {% for seance in seances %}
+            <tr>
+                <td>{{ seance.titreseance }}</td>
+                <td>{{ seance.descseance }}</td>
+                <td>{{ seance.dateseance ? seance.dateseance|date('Y-m-d') : '' }}</td>
+                <td>{{ seance.idcoach }}</td>
+                <td>{{ seance.idroutine }}</td>
+                <td>{{ seance.likes }}</td>
+                <td>
+                    <a href="{{ path('seance_show', {'idseance': seance.idseance}) }}" class="mb-4 btn btn-primary">Détails</a>
+                    <a href="{{ path('seance_edit', {'idseance': seance.idseance}) }}" class="mb-4 btn btn-primary">Modifier</a>
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">Pas de séances a afficher</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        <tbody id="result">
+        </tbody>
+        <a href="{{ path('seance_new') }}" class="mb-4 btn btn-primary">Créer une nouvelle séance</a>
+    </table>
+
+
+{% endblock %}
+
+{% block js %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+        const divs = $("#t tbody#result");
+        $(document).ready(function () {
+            $('#Trier').on('change', function () {
+                var level = $(this).val();
+                if (level == 1) {
+                    $.ajax({
+                        type: "GET",
+                        url: "{{ path('seance_trie1') }}",
+                        success: function (retour) {
+                            if (retour) {
+                                $(divs).empty();
+                                $.each(JSON.parse(retour), function (i, obj) {
+                                    $("#t tbody#trie").hide();
+                                    $(divs).append(' <tr> <td>' + obj.titreseance + '</td> <td> ' + obj.descseance + '</td> <td>' + obj.dateseance + '  </td> <td>' + obj.idcoach + '</td> <td> ' + obj.idroutine + ' </td> <td>' + obj.likes + '</td> ');
+                                })
+                            } else {
+                                $("#t tbody#trie").show();
+                                $(divs).empty();
+                                $(divs).fadeIn('fast');
+                            }
+                        },
+                    })
+                } else if (level == 2) {
+                    $.ajax({
+                        type: "GET",
+                        url: "{{ path('seance_trie2') }}",
+                        success: function (retour) {
+                            if (retour) {
+                                $(divs).empty();
+                                $.each(JSON.parse(retour), function (i, obj) {
+                                    $("#t tbody#trie").hide();
+                                    $(divs).append(' <tr> <td>' + obj.titreseance + '</td> <td> ' + obj.descseance + '</td> <td>' + obj.dateseance + '</td> <td>' + obj.idcoach + '</td> <td> ' + obj.idroutine + ' </td> <td>' + obj.likes + '</td> <td> </td> </tr>');
+                                })
+                            } else {
+                                $("#t tbody#trie").show();
+                                $(divs).empty();
+                                $(divs).fadeIn('fast');
+                            }
+                        },
+                    })
+                } else if (level == 3) {
+                    $.ajax({
+                        type: "GET",
+                        url: "{{ path('seance_trie3') }}",
+                        success: function (retour) {
+                            if (retour) {
+                                $(divs).empty();
+                                $.each(JSON.parse(retour), function (i, obj) {
+                                    $("#t tbody#trie").hide();
+                                    $(divs).append(' <tr> <td>' + obj.titreseance + '</td> <td> ' + obj.descseance + '</td> <td>' + obj.dateseance + ' <td>' + obj.idcoach + '</td> <td> ' + obj.idroutine + ' </td> <td>' + obj.likes + '</td> <td> </td> </tr>');
+                                })
+                            } else {
+                                $("#t tbody#trie").show();
+                                $(divs).empty();
+                                $(divs).fadeIn('fast');
+                            }
+                        },
+                    })
+                } else if (level == 4) {
+                    $.ajax({
+                        type: "GET",
+                        url: "{{ path('seance_trie4') }}",
+                        success: function (retour) {
+                            if (retour) {
+                                $(divs).empty();
+                                $.each(JSON.parse(retour), function (i, obj) {
+                                    $("#t tbody#trie").hide();
+                                    $(divs).append(' <tr> <td>' + obj.titreseance + '</td> <td> ' + obj.descseance + '</td> <td>' + obj.dateseance + '  <td>' + obj.idcoach + '</td> <td> ' + obj.idroutine + ' </td> <td>' + obj.likes + '</td> <td> </td> </tr>');
+                                })
+                            } else {
+                                $("#t tbody#trie").show();
+                                $(divs).empty();
+                                $(divs).fadeIn('fast');
+                            }
+                        },
+                    })
+                }
+            });
+        })
+    </script>
+{% endblock %}
+
+

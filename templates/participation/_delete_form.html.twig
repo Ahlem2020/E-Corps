@@ -1,0 +1,4 @@
+<form method="post" action="{{ path('participation_delete', {'id': participation.id}) }}" onsubmit="return confirm('Annuler votre participation ?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ participation.id) }}">
+    <button class="btn">Delete</button>
+</form>

@@ -1,0 +1,22 @@
+<div  align="center">
+    <form method="post" action="{{ path('groupe_delete', {'idclass': groupe.idclass}) }}"
+          onsubmit="return confirm('Vouler vous supprimer cette classe ?');">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ groupe.idclass) }}">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <button class="btn btn-primary ml-3 mt-3">Supprimer</button>
+    </form>
+</div>

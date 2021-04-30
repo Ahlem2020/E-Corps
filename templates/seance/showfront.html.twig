@@ -1,0 +1,38 @@
+{% extends 'BaseFront.html.twig' %}
+
+{% block title %}Seance{% endblock %}
+
+{% block body %}
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Titreseance</th>
+            <td>{{ seance.titreseance }}</td>
+        </tr>
+        <tr>
+            <th>Descseance</th>
+            <td>{{ seance.descseance }}</td>
+        </tr>
+        <tr>
+            <th>Dateseance</th>
+            <td>{{ seance.dateseance ? seance.dateseance|date('Y-m-d') : '' }}</td>
+        </tr>
+        <tr>
+            <th>Idcoach</th>
+            <td>{{ seance.idcoach }}</td>
+        </tr>
+        <tr>
+            <th>Idroutine</th>
+            <td>{{ seance.idroutine }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('seance_index') }}" class="mb-4 btn btn-primary">Retourner à la liste</a>
+
+{% endblock %}

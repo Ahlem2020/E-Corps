@@ -1,0 +1,45 @@
+<div align="center">
+    <form>
+        <table>
+            {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+
+            <div class="form-row mb-4">
+
+                <tr>
+                    <td>
+                        <div class="col">
+                            <br> <br>
+
+                            {{ form_label(form.nomclass,"Nom : " ) }}
+                            {{ form_row(form.nomclass,{'attr': {'class': 'form-control'}}) }}
+                        </div>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="col">
+
+                            <br> <br>
+
+                            {{ form_label(form.typeclass,"Type de class : " ) }}
+                            {{ form_row(form.typeclass,{'attr': {'class': 'form-control'}}) }}
+                    </td>
+            </div>
+            </tr>
+
+            {{ form_end(form) }}
+            <br>
+            <br>
+            <tr>
+                <td><br></td>
+                <td><br></td>
+
+                <td>
+                    <input type="submit" name="time" value="Confirmer " class="mb-4 btn btn-primary">
+                </td>
+            </tr>
+        </table>
+
+    </form>
+</div>

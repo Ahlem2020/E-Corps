@@ -1,0 +1,81 @@
+<div align="center" class="div-1">
+    {{ form_start(form ,{'attr': {'novalidate': 'novalidate'}} ) }}
+    <form>
+        <table>
+            <div class="form-row mb-4">
+
+                <tr>
+                    <td>
+                        <br> <br>
+                        {{ form_label(form.titreseance,"Titre : " ) }}
+                        {{ form_row(form.titreseance) }}
+
+                    </td>
+                    <td>
+                        <div class="col">
+                            <br> <br>
+                            {{ form_label(form.descseance,"Description : " ) }}
+                            {{ form_row(form.descseance) }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="col">
+                            <br> <br>
+                            {{ form_label(form.dateseance,"Date du séance : " ) }}
+                            {{ form_row(form.dateseance) }}
+                        </div>
+
+
+                    <td>
+                        <div class="col">
+                            <br> <br>
+                            {{ form_label(form.idcoach,"Coach : " ) }}
+                            {{ form_row(form.idcoach) }}
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="col">
+                            <br> <br>
+
+                            {{ form_label(form.idroutine,"Routine : " ) }}
+                            {{ form_row(form.idroutine) }}}
+                        </div>
+
+                    </td>
+                    <td>
+                        <div class="col">
+                            <br> <br>
+                            {{ form_label(form.groupe,"Groupe : " ) }}
+                            {{ form_row(form.groupe) }}
+                        </div>
+
+                    </td>
+                </tr>
+
+            </div>
+            </tr>
+
+            {{ form_end(form) }}
+
+            <br>
+            <tr>
+                <td><br></td>
+                <td><br></td>
+                <td><br></td>
+                <td><br></td>
+
+                <td>
+                    <input type="submit" name="time" value="Ajouter " class="mb-4 btn btn-primary">
+                </td>
+                <td>
+                    <a href="{{ path('seance_index') }}" class="mb-4 btn btn-primary">Retourner à la liste</a>
+                </td>
+            </tr>
+        </table>
+        <br> <br> <br> <br>
+
+    </form>
+</div>

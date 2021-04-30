@@ -1,0 +1,33 @@
+{% extends 'BaseBack.html.twig' %}
+
+
+
+{% block body %}
+    <h1> Modifier une classe</h1>
+    {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="layout-px-spacing" align="center">
+        <div class="row layout-top-spacing">
+
+            <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+                <div class="widget widget-chart-one">
+                    <div class="widget-heading">
+
+                        {{ include('groupe/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+                        {{ include('groupe/_delete_form.html.twig') }}
+                    </div>
+                </div>
+                <br>
+
+
+                <a href="{{ path('groupe_index') }}" class="btn btn-primary ml-3 mt-3">Retourner à la liste</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

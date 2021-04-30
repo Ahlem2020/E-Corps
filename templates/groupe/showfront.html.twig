@@ -1,0 +1,40 @@
+{% extends 'BaseFront.html.twig' %}
+
+{% block body %}
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="layout-px-spacing">
+        <div class="row layout-top-spacing">
+
+            <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+                <div class="widget widget-chart-one">
+                    <div class="widget-heading">
+                        <table class="table">
+
+                            <tbody>
+
+                            <tr>
+                                <th>Nomclass</th>
+                                <td>{{ groupe.nomclass }}</td>
+                            </tr>
+                            <tr>
+                                <th>Typeclass</th>
+                                <td>{{ groupe.typeclass }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <a href="{{ path('groupe_index') }} " class="btn btn-primary ml-3 mt-3">Retourner à la liste</a>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
